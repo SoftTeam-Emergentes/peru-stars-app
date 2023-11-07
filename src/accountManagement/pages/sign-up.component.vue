@@ -11,24 +11,23 @@
         <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" @click="navigateToSingIn">Sign In</a>
       </div>
 
-      <div>
-        <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-        <pv-input-text id="email1" type="text" class="w-full mb-3"/>
+      <form @submit="handleSubmit">
+        <label  class="block text-900 font-medium mb-2">Name</label>
+        <pv-input-text  v-model="userInfo.firstName" type="text" class="w-full mb-3" placeholder="Your name"/>
+        <label  class="block text-900 font-medium mb-2">Last Name</label>
+        <pv-input-text  v-model="userInfo.lastName" type="text" class="w-full mb-3" placeholder="your lastname"/>
+        <label  class="block text-900 font-medium mb-2">Email</label>
+        <pv-input-text  v-model="userInfo.email" type="email" class="w-full mb-3" placeholder="your email address"/>
 
-        <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-        <pv-input-text id="password1" type="password" class="w-full mb-3"/>
-        <label for="password1" class="block text-900 font-medium mb-2">Repeat Password</label>
-        <pv-input-text id="password1" type="password" class="w-full mb-3"/>
+        <label  class="block text-900 font-medium mb-2">Password</label>
+        <pv-input-text v-model="userInfo.password" type="password" class="w-full mb-3" placeholder="your password"/>
+        <label  class="block text-900 font-medium mb-2">Repeat Password</label>
+        <pv-input-text v-model="confirmationPassword"  type="password" class="w-full mb-3" placeholder="repeat your password"/>
 
-        <div class="flex align-items-center justify-content-between mb-6">
-          <div class="flex align-items-center">
-            <pv-checkbox id="rememberme1" :binary="true" v-model="checked" class="mr-2"></pv-checkbox>
-            <label for="rememberme1">Remember me</label>
-          </div>
-        </div>
 
-        <pv-button label="Register" icon="pi pi-user" class="w-full"></pv-button>
-      </div>
+
+      </form>
+      <pv-button @click="register()" label="Register" icon="pi pi-user" class="w-full"></pv-button>
     </div>
   </div>
   </body>
@@ -36,12 +35,43 @@
 <script>
 
 
+import {AuthApiService} from "@/accountManagement/services/auth-api.service";
+
 export default {
   name: "Sign-up",
+  authService:null,
+  data(){
+    return{
+      confirmationPassword:'',
+      userInfo:{
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      }
+    }
+
+  },
   methods:{
     navigateToSingIn(){
       this.$router.push({name:'sign-in'});
-    }
+    },
+    async register(){
+      try {
+        if (this.userInfo.password===this.confirmationPassword){
+          this.authService= new AuthApiService();
+          const response = await this.authService.register(this.userInfo)
+          console.log(response);
+          this.navigateToSingIn();
+        }else{
+          console.log('Passwords do not match');
+        }
+
+      } catch (error) {
+        console.log(this.response +" error");// Maneja los errores de inicio de sesión.
+      }
+    },
+
   }
 }
 </script>
