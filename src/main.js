@@ -9,7 +9,7 @@ import PrimeVue from "primevue/config";
 //Add PrimeFlex
 import 'primeflex/primeflex.css';
 //Add Theme
-import "primevue/resources/themes/fluent-light/theme.css";
+import "primevue/resources/themes/lara-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
@@ -24,7 +24,7 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import Carousel from "primevue/carousel";
 import DataView from "primevue/dataview";
-import Menubar from 'primevue/menubar';
+import Menubar from "primevue/menubar";
 import Avatar from 'primevue/avatar';
 import AvatarGroup from 'primevue/avatargroup';
 import Tag from "primevue/tag";
@@ -34,6 +34,12 @@ import Sidebar from "primevue/sidebar";
 import OrderList from "primevue/orderlist";
 import Listbox from "primevue/listbox";
 import Card from "primevue/card";
+import Toast from "primevue/toast";
+import Password from "primevue/password";
+import Divider from "primevue/divider";
+import Dropdown from "primevue/dropdown";
+import InputGroup from 'primevue/inputgroup';
+
 
 
 
@@ -64,7 +70,11 @@ app.component('pv-sidebar', Sidebar)
 app.component('pv-order-list', OrderList)
 app.component('pv-list-box', Listbox)
 app.component('pv-card',Card)
-
+app.component('pv-toast',Toast)
+app.component('pv-password',Password)
+app.component('pv-divider',Divider)
+app.component('pv-dropdown',Dropdown)
+app.component('pv-input-group',InputGroup)
 
 
 

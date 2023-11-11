@@ -12,7 +12,7 @@ import NavBar from "@/shared/components/nav-bar.component.vue";
 
 
 
-  <RouterView />
+  <RouterView  />
 </template>
 
 <style scoped>

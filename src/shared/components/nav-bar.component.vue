@@ -2,13 +2,19 @@
 
 <template>
 
-    <pv-menubar :model="navigationSupplier" class="shadow-8 text-red-400  fixed  z-5  top-0 mr-8" style="width: calc(100vw - 16px)"  >
+    <pv-menubar :model="navigationSupplier"  class="shadow-8 text-red-400  fixed  z-5  top-0 mr-8" style="width: calc(100vw - 16px)"  >
       <template #start>
         <h1 class="text-3xl pl-6 font-bold border-round-right">PeruStars</h1>
       </template>
+      <template #item="{ item, props, root }">
+        <a  @click="navigate(item)" :class=item.class v-bind="props.action">
+          <span :class="item.icon" />
+          <span class="ml-2">{{ item.label }}</span>
+          <span v-if="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut }}</span>
+        </a>
+      </template>
     </pv-menubar>
   <div style="height: 80px">
-
   </div>
 </template>
 <script>
@@ -19,15 +25,15 @@ export default {
     return {
       user: String,
       navigationSupplier: [
-        {label: "Home", icon: 'pi pi-fw pi-home', to: {name:'welcome'},styleClass: 'text-toolbar-btn mr-4 red--text'},
-        {label: "About", icon: 'pi pi-info-circle', to: {name:'about'},styleClass: 'text-toolbar-btn mr-4 red--text'},
-        {label: "SignIn", icon: 'pi pi-user', to: {name:'sign-in'},styleClass: 'text-green-500'},
-        {label: "Signup", icon: 'pi pi-user-plus', to: {name:'sign-up'},styleClass: 'text-toolbar-btn mr-4 red--text'},
+        {label: "Home", icon: 'pi pi-fw pi-home', routeName:'welcome',class:'text-red-500'},
+        {label: "About", icon: 'pi pi-info-circle', routeName:'about',class:'text-red-500'},
+        {label: "SignIn", icon: 'pi pi-user', routeName:'sign-in',class:'hover:bg-red-500 bg-primary'},
+        {label: "Signup", icon: 'pi pi-user-plus', routeName:'sign-up',class:'text-red-500'},
 
       ],
       navigationStore: [
-        {label: "Home", icon: 'pi pi-fw pi-home', to: {name:'welcome'}},
-        {label: "Plans", icon: 'pi pi-fw pi-book', to: {name:'about'}},
+        {label: "Home", icon: 'pi pi-fw pi-home', route: {name:'welcome'}},
+        {label: "Plans", icon: 'pi pi-fw pi-book', route: {name:'about'}},
       ],
       //`store/${this.storeId}/store-home`
     }
@@ -37,6 +43,9 @@ export default {
     this.user= "supplier"
   },
   methods:{
+    navigate(item) {
+      this.$router.push({ name:item.routeName });
+    },
     getUser(){
       if(this.user==='supplier')
         return this.navigationSupplier

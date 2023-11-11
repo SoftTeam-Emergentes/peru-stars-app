@@ -19,6 +19,18 @@
         >
       </div>
     </pv-card>
+    <div class=" card grid">
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="p-3 bg-blue-500">Contenido 1</div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="p-3 bg-green-500">Contenido 2</div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="p-3 bg-red-500">Contenido 3</div>
+      </div>
+    </div>
+
   </div>
 
 
@@ -26,8 +38,20 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "profile-hobbyist"
+  name: "profile-hobbyist",
+  async created(){
+    const response=await axios.get('users',{
+      headers:{
+        Authorization:'Bearer'+ localStorage.getItem('token')
+      }
+        }
+    );
+    console.log(response)
+  }
+
 }
 </script>
 

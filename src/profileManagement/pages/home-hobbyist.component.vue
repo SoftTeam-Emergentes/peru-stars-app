@@ -11,6 +11,8 @@
       <top-artist></top-artist>
       <top-art></top-art>
       <top-events></top-events>
+
+
     </div>
 
   </div>
@@ -26,9 +28,12 @@ import TopArtist from "@/profileManagement/components/top-artist.component.vue";
 import TopArt from "@/profileManagement/components/top-artwork.component.vue";
 import TopEvents from "@/profileManagement/components/top-events.component.vue";
 
+
+
+
 export default {
   name: "HomeHobbyist",
-  components: {TopEvents, TopArt, TopArtist, SideBarHobbyist},
+  components: { TopEvents, TopArt, TopArtist, SideBarHobbyist},
 
   data(){
     return{
