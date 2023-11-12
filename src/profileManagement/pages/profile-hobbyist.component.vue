@@ -30,7 +30,10 @@
         <div class="p-3 bg-red-500">Contenido 3</div>
       </div>
     </div>
-
+    <pv-button @click="visible = true"  label="Edit" icon="pi pi-external-link" class="w-full"></pv-button>
+    <pv-dialog v-model:visible="visible" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+      <card-edit-hobbyist></card-edit-hobbyist>
+    </pv-dialog>
   </div>
 
 
@@ -39,9 +42,16 @@
 
 <script>
 import axios from "axios";
+import CardEditHobbyist from "@/profileManagement/components/card-edit-hobbyist.component.vue";
 
 export default {
   name: "profile-hobbyist",
+  components: {CardEditHobbyist},
+  data() {
+    return {
+      visible: false
+    };
+  },
   async created(){
     const response=await axios.get('users',{
       headers:{

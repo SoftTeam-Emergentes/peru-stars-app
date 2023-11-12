@@ -25,13 +25,13 @@
         <label for="age">Age</label>
     </span>
     </div>
-    <div class="col-12 md:col-6 my-1">
+    <div class="col-12  my-1">
       <span class="p-float-label">
         <pv-input-text class=" w-full  " id="password" type="password" v-model="hobbyist.password"/>
         <label for="password">Password</label>
     </span>
     </div>
-    <pv-button label="Update" icon="pi pi-user" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"></pv-button>
+    <pv-button label="Update" icon="pi pi-user" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap my-4"></pv-button>
 
   </div>
 </template>

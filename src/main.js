@@ -40,6 +40,7 @@ import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
 import InputGroup from 'primevue/inputgroup';
 import Textarea from "primevue/textarea";
+import Dialog from "primevue/dialog";
 
 
 
@@ -77,6 +78,7 @@ app.component('pv-divider',Divider)
 app.component('pv-dropdown',Dropdown)
 app.component('pv-input-group',InputGroup)
 app.component('pv-text-area',Textarea)
+app.component('pv-dialog',Dialog)
 
 
 
