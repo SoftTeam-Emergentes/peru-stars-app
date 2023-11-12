@@ -112,11 +112,16 @@
 
 
 import {AuthApiService} from "@/accountManagement/services/auth-api.service";
+import {useRegisteredUserStore} from "@/accountManagement/stores/registeredUserStore";
+import {hobbyistsApiService} from "@/profileManagement/services/hobbyist-api.service";
+import {ArtistsApiService} from "@/profileManagement/services/artist-api.service";
 
 export default {
   name: "Sign-up",
 
   authService: null,
+  hobbyistService: null,
+  artistService: null,
   data() {
     return {
       confirmationPassword: '',
@@ -155,14 +160,41 @@ export default {
       this.$router.push({name: 'sign-in'});
     },
     async register() {
+      const registeredUserStore = useRegisteredUserStore();
+      let body = undefined;
       try {
         if (this.userInfo.password === this.confirmationPassword && this.selectedUser != null) {
           this.error = false;
           this.authService = new AuthApiService();
+          this.hobbyistService = new hobbyistsApiService();
+          this.artistService = new ArtistsApiService();
           const response = await this.authService.register(this.userInfo)
-
           console.log(response);
+          switch (this.selectedUser) {
+            case "hobbyist":
+              body = {
+                userId: response.data.userId,
+                age: this.hobbyist.age
+              };
+
+              await this.hobbyistService.create(body);
+              break;
+            case "artist":
+              body = {
+                userId: response.data.userId,
+                age: this.artist.age,
+                brandName: this.artist.brandName,
+                description: this.artist.description,
+                phrase: this.artist.phrase,
+                contactNumber: this.artist.contactNumber,
+                contactEmail: this.artist.contactEmail,
+                genre: 0,
+                socialMediaLink: [""]
+              };
+              await this.artistService.create(body);
+          }
           this.navigateToSingIn();
+          registeredUserStore.type = this.selectedUser;
         } else {
           this.error = true;
           console.log('Passwords do not match');

@@ -10,7 +10,7 @@ export class hobbyistsApiService {
     }
 
     create(data) {
-        return http.post('/hobbyists', data);
+        return http.post('/hobbyist/hobbyist/register', data);
     }
 
     update(id, data) {
