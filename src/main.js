@@ -39,6 +39,7 @@ import Password from "primevue/password";
 import Divider from "primevue/divider";
 import Dropdown from "primevue/dropdown";
 import InputGroup from 'primevue/inputgroup';
+import Textarea from "primevue/textarea";
 
 
 
@@ -75,7 +76,7 @@ app.component('pv-password',Password)
 app.component('pv-divider',Divider)
 app.component('pv-dropdown',Dropdown)
 app.component('pv-input-group',InputGroup)
-
+app.component('pv-text-area',Textarea)
 
 
 
