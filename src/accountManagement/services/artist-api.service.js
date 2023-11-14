@@ -1,6 +1,6 @@
 import http from '../../shared/service/http-common';
 
-export class ArtworkApiService {
+export class ArtistApiService {
     getAll() {
         return http.get('/artists');
     }
