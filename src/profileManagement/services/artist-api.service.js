@@ -10,7 +10,7 @@ export class ArtistsApiService {
     }
 
     create(data) {
-        return http.post('/artists/artist/register', data);
+        return http.post('/artists', data);
     }
 
     update(id, data) {

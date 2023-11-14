@@ -1,7 +1,10 @@
 
 
 <template>
+  <div v-if="isUserLoggedIn">
 
+  </div>
+  <div v-else>
     <pv-menubar :model="navigationSupplier"  class="shadow-8 text-red-400  fixed  z-5  top-0 mr-8" style="width: calc(100vw - 16px)"  >
       <template #start>
         <h1 class="text-3xl pl-6 font-bold border-round-right">PeruStars</h1>
@@ -14,16 +17,20 @@
         </a>
       </template>
     </pv-menubar>
-  <div style="height: 80px">
+    <div style="height: 80px">
+    </div>
   </div>
 </template>
 <script>
+
+import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
 
 export default {
   name: "nav-bar",
   data() {
     return {
       user: String,
+      isUserLoggedIn: false,
       navigationSupplier: [
         {label: "Home", icon: 'pi pi-fw pi-home', routeName:'welcome',class:'text-red-500'},
         {label: "About", icon: 'pi pi-info-circle', routeName:'about',class:'text-red-500'},
@@ -39,8 +46,9 @@ export default {
     }
   },
   created() {
-
-    this.user= "supplier"
+    //const loggedUserStore = useLoggedUserStore();
+    this.user= "supplier";
+    //this.isUserLoggedIn = loggedUserStore.isUserLoggedIn;
   },
   methods:{
     navigate(item) {

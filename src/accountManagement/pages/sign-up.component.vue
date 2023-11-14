@@ -73,7 +73,12 @@
               <pv-input-text class="w-full" v-model="artist.brandName" placeholder="your brandName"/>
             </div>
             <div class="col grid align-items-center ">
-              <div class="col-8">
+              <div class="col-4">
+                <label class="block text-900 font-medium ">Genre artist</label>
+                <pv-dropdown v-model="artist.genre" :options="typeGenre" class="w-full md:w-14rem"
+                             placeholder="Select genre"/>
+              </div>
+              <div class="col-4">
                 <label class="block text-900 font-medium ">Telephone</label>
                 <pv-input-text class="w-full" v-model="artist.contactNumber" type="number" placeholder="your number"/>
               </div>
@@ -86,7 +91,6 @@
               <label class="block text-900 font-medium ">Contact Email</label>
               <pv-input-text class="w-full" v-model="artist.contactEmail" placeholder="your contact email"/>
             </div>
-
           </div>
           <div v-else-if="selectedUser==='hobbyist'" class="card flex flex-wrap justify-content-center gap-2 ">
 
@@ -132,6 +136,12 @@ export default {
       typeUser: [
         'artist',
         'hobbyist'],
+      typeGenre: [
+        'MUSICIAN',
+        'FILMAKER',
+        'VISUALARTIST',
+        'WRITER',
+        'OTHER'],
       userInfo: {
         firstName: '',
         lastName: '',
@@ -145,7 +155,7 @@ export default {
         contactNumber: 0,
         contactEmail: '',
         age: 0,
-        genere: 'default',
+        genre: 'default',
         collected: true
       },
       hobbyist:{
@@ -188,7 +198,7 @@ export default {
                 phrase: this.artist.phrase,
                 contactNumber: this.artist.contactNumber,
                 contactEmail: this.artist.contactEmail,
-                genre: 0,
+                genre: this.artist.genre,
                 socialMediaLink: [""]
               };
               await this.artistService.create(body);

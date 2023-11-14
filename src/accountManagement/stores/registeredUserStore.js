@@ -9,7 +9,7 @@ export const useRegisteredUserStore = defineStore("registeredUser", {
     },
     getters: {
         haveUserRegistered() {
-            return !isNull(this.type)
+            return !isNull(this.type);
         }
     }
 })
