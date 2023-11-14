@@ -37,7 +37,7 @@
 <script>
 
 import {AuthApiService} from "@/accountManagement/services/auth-api.service";
-import * as constants from "constants";
+import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
 
 export default {
   name: "SignIn",
@@ -57,14 +57,40 @@ export default {
     navigateToSingUp() {
       this.$router.push({name: 'sign-up'});
     },
-
+    navigateToHobbyistHome() {
+      this.$router.push({name: 'home-hobbyist'});
+    },
+    /*navigateToArtistHome() {
+      this.$router.push({name: 'home-artist'});
+    },*/
     async login() {
+      const loggedUserStore = useLoggedUserStore();
+      //const registeredUserStore = useRegisteredUserStore();
       try {
         if (this.credentials.email && this.credentials.password) {
           this.authService = new AuthApiService();
            this.response = await this.authService.login(this.credentials);
-           localStorage.setItem('token',this.response.data.token)
-
+           //localStorage.setItem('token',this.response.data.token)
+          loggedUserStore.token = this.response.data.token
+          /*if (registeredUserStore.haveUserRegistered) {
+            switch (registeredUserStore.type) {
+              case "artist":
+                //this.navigateToArtistHome();
+                break;
+              case "hobbyist":
+                this.navigateToHobbyistHome();
+                break;
+            }
+          }*/
+          switch (this.response.data.userType) {
+            case "Artist":
+              alert("Artista logeado")
+              //this.navigateToArtistHome();
+              break;
+            case "Hobbyist":
+              this.navigateToHobbyistHome();
+              break;
+          }
           console.log(this.response);
         } else {
           this.messageWarning();
