@@ -16,7 +16,10 @@
 
       <template #end>
         <div class="flex align-items-center gap-2">
-          <pv-avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
+          <pv-button  icon="pi pi-times"  @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" rounded>
+            <img src="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" alt="Descripción de la imagen" />
+          </pv-button>
+          <pv-menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
           <span class="font-bold text-bluegray-50">Amy </span>
         </div>
       </template>
@@ -24,9 +27,35 @@
   </div>
 </template>
 <script>
+import {userAuth} from "@/accountManagement/stores/auth";
+
 export default {
   name: "navigation-bar",
+  data() {
+    return {
+      items: [
+        {
+          label: 'Refresh',
+          icon: 'pi pi-refresh'
+        },
+        {
+          label: 'Logout',
+          icon: 'pi pi-sign-out',
+          command: () => {
+           this.logout();this.$router.push({name:'sign-in'});
+          }
+        }
+      ]
+    };
+  },
   methods: {
+    toggle(event) {
+      this.$refs.menu.toggle(event);
+    },
+    logout(){
+      const Auth=userAuth();
+      Auth.clear();
+    },
     navigate(name) {
       this.$router.push({name: name});
     },

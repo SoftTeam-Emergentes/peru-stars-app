@@ -41,7 +41,15 @@ export const userAuth = defineStore("auth",()=>{
         userType.value=userType1;
         console.log(userType)
     }
+    function clear(){
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('userType');
+        token.value='';
+        user.value='';
+        userType.value='';
+    }
     return{
-        setToken,setUser,setType,token,userType
+        setToken,setUser,setType,clear,token,userType
     }
 })

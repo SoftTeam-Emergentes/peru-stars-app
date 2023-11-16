@@ -20,6 +20,7 @@ export class AuthApiService {
         return http.post(`/users/register`, userInfo);
     }
     logout() {
+         auth.clear();
         // Realiza cualquier lógica necesaria para cerrar la sesión, como eliminar el token JWT.
     }
 
