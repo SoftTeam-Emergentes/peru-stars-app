@@ -2,29 +2,29 @@ import http from '../../shared/service/http-common';
 
 export class EventsApiService {
     getAll() {
-        return http.get('/artEvents');
+        return http.get('/art-events');
     }
 
     getById(id) {
-        return http.get(`/artEvents/${id}`);
+        return http.get(`/art-events/${id}`);
     }
 
     create(data) {
-        return http.post('/artEvents', data);
+        return http.post('/art-events', data);
     }
 
     update(id, data) {
-        return http.put(`/artEvents/${id}`, data);
+        return http.put(`/art-events/${id}`, data);
     }
 
     delete(id) {
-        return http.delete(`/artEvents/${id}`);
+        return http.delete(`/art-events/${id}`);
     }
 
     findByName(name) {
-        return http.get(`/artEvents?title=${name}`);
+        return http.get(`/art-events?title=${name}`);
     }
     findByLastName(lastName) {
-        return http.get(`/artEvents?title=${lastName}`);
+        return http.get(`/art-events?title=${lastName}`);
     }
 }

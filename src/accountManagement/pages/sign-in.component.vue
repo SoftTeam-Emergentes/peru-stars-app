@@ -16,10 +16,12 @@
 
       <form @submit="login">
         <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-        <pv-input-text v-model="credentials.email" id="email1" type="email" placeholder="Correo electrónico" class="w-full mb-3"/>
+        <pv-input-text v-model="credentials.email" id="email1" type="email" placeholder="Correo electrónico"
+                       class="w-full mb-3"/>
 
         <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-        <pv-input-text v-model="credentials.password" id="password1" type="password" placeholder="Contraseña" class="w-full mb-3"/>
+        <pv-input-text v-model="credentials.password" id="password1" type="password" placeholder="Contraseña"
+                       class="w-full mb-3"/>
 
         <div class="flex align-items-center justify-content-between mb-6">
           <div class="flex align-items-center">
@@ -37,7 +39,6 @@
 <script>
 
 import {AuthApiService} from "@/accountManagement/services/auth-api.service";
-import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
 import {updateAuthorizationHeader} from "@/shared/service/update-authorization-header";
 
 export default {
@@ -66,37 +67,15 @@ export default {
       this.$router.push({name: 'home-artist'});
     },
     async login() {
-      const loggedUserStore = useLoggedUserStore();
+      //const loggedUserStore = useLoggedUserStore();
       this.authService = new AuthApiService();
       //const registeredUserStore = useRegisteredUserStore();
       try {
         if (this.credentials.email && this.credentials.password) {
-
-           await this.authService.login(this.credentials).then((response) => {
-             loggedUserStore.token = response.data.token;
-             /*const username = response.data.token.payload.Name;
-             console.log(username);*/
-             const base64Url = loggedUserStore.token.split('.')[1];
-             const base64 = base64Url.replace('-', '+').replace('_', '/');
-             const decodedToken = JSON.parse(atob(base64));
-             console.log(decodedToken);
-             const date = new Date(decodedToken.exp * 1000);
-             console.log(date);
-             this.userType = response.data.userType;
-             updateAuthorizationHeader();
-           });
-
-
-          /*if (registeredUserStore.haveUserRegistered) {
-            switch (registeredUserStore.type) {
-              case "artist":
-                //this.navigateToArtistHome();
-                break;
-              case "hobbyist":
-                this.navigateToHobbyistHome();
-                break;
-            }
-          }*/
+          await this.authService.login(this.credentials);
+          this.userType = localStorage.getItem('userType');
+          updateAuthorizationHeader();
+          console.log(this.userType)
           switch (this.userType) {
             case "Artist":
               this.navigateToArtistHome();
@@ -108,7 +87,7 @@ export default {
           console.log(this.response);
         } else {
           this.messageWarning();
-          console.log( this.response );
+          console.log(this.response);
         }
         // Procesa la respuesta (por ejemplo, guarda el token JWT en el estado de autenticación).
       } catch (error) {
@@ -116,7 +95,7 @@ export default {
       }
     },
 
-     messageWarning() {
+    messageWarning() {
       this.$toast.add({
         severity: 'warn',
         summary: 'Success Message',

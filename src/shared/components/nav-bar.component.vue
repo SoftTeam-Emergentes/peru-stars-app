@@ -23,8 +23,6 @@
 </template>
 <script>
 
-import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
-
 export default {
   name: "nav-bar",
   data() {
@@ -42,16 +40,16 @@ export default {
         {label: "Home", icon: 'pi pi-fw pi-home', route: {name:'welcome'}},
         {label: "Plans", icon: 'pi pi-fw pi-book', route: {name:'about'}},
       ],
-      //`store/${this.storeId}/store-home`
+
     }
   },
   created() {
-    //const loggedUserStore = useLoggedUserStore();
+
     this.user= "supplier";
-    //this.isUserLoggedIn = loggedUserStore.isUserLoggedIn;
+
   },
   methods:{
-    navigate(item) {
+    navigate (item) {
       this.$router.push({ name:item.routeName });
     },
     getUser(){

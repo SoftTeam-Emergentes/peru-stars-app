@@ -18,7 +18,7 @@
               </p>
             </template>
             <template #footer>
-              <pv-button  class="border-round-lg" icon="pi pi-dollar" :label="getRandomNumber(100,500)" text raised/>
+              <pv-button  class="border-round-lg" icon="pi pi-dollar" :label="getRandomNumber(100,500).toString()" text raised/>
               <pv-button class="border-round-lg" label="Ver Más" severity="secondary" style="margin-left: 0.5em" raised />
             </template>
           </pv-card>
