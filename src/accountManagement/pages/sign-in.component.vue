@@ -74,6 +74,14 @@ export default {
 
            await this.authService.login(this.credentials).then((response) => {
              loggedUserStore.token = response.data.token;
+             /*const username = response.data.token.payload.Name;
+             console.log(username);*/
+             const base64Url = loggedUserStore.token.split('.')[1];
+             const base64 = base64Url.replace('-', '+').replace('_', '/');
+             const decodedToken = JSON.parse(atob(base64));
+             console.log(decodedToken);
+             const date = new Date(decodedToken.exp * 1000);
+             console.log(date);
              this.userType = response.data.userType;
              updateAuthorizationHeader();
            });
