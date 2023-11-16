@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router'
+import router from './shared/router'
 import StyleClass from 'primevue/styleclass';
 //Add PrimeVue
 import PrimeVue from "primevue/config";

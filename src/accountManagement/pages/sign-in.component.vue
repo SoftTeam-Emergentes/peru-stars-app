@@ -62,9 +62,9 @@ export default {
     navigateToHobbyistHome() {
       this.$router.push({name: 'home-hobbyist'});
     },
-    /*navigateToArtistHome() {
+    navigateToArtistHome() {
       this.$router.push({name: 'home-artist'});
-    },*/
+    },
     async login() {
       const loggedUserStore = useLoggedUserStore();
       this.authService = new AuthApiService();
@@ -99,8 +99,7 @@ export default {
           }*/
           switch (this.userType) {
             case "Artist":
-              alert("Artista logeado")
-              //this.navigateToArtistHome();
+              this.navigateToArtistHome();
               break;
             case "Hobbyist":
               this.navigateToHobbyistHome();

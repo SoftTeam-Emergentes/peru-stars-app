@@ -43,6 +43,18 @@ const router = createRouter({
 
       ]
     },
+    {
+      path: '/artist',
+      name: 'artist',
+      component: () => import('@/profileManagement/pages/artist.component.vue'),
+      children: [
+        {
+          path: 'home',
+          name: 'home-artist',
+          component: () => import('@/profileManagement/pages/home-artist.component.vue'),
+        },
+      ]
+    },
 
   ]
 })
