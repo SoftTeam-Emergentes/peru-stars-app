@@ -1,8 +1,13 @@
 import http from '../../shared/service/http-common';
-
+import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
+const loggedUserStore = useLoggedUserStore();
 export class ArtistsApiService {
     getAll() {
-        return http.get('/artists');
+        return http.get('/artists', /*{
+            headers: {
+                'Authorization': `Bearer ${loggedUserStore.token}`
+            }
+        }*/);
     }
 
     getById(id) {

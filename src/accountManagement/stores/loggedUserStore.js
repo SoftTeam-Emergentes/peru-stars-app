@@ -7,9 +7,15 @@ export const useLoggedUserStore = defineStore("loggedUser", {
             token: null
         }
     },
+    persist: true,
     getters: {
         isUserLoggedIn() {
             return !isNull(this.token);
+        }
+    },
+    actions: {
+        logOut() {
+            this.token = null;
         }
     }
 })

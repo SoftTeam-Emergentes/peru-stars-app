@@ -5,6 +5,7 @@ import router from './router'
 import StyleClass from 'primevue/styleclass';
 //Add PrimeVue
 import PrimeVue from "primevue/config";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 //Add PrimeFlex
 import 'primeflex/primeflex.css';
@@ -48,8 +49,9 @@ import Dialog from "primevue/dialog";
 
 
 const app = createApp(App)
-
-app.use(createPinia())
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
 app.use(router)
 app.use(PrimeVue,{ripple:true})
 

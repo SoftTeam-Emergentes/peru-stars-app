@@ -38,6 +38,7 @@
 
 import {AuthApiService} from "@/accountManagement/services/auth-api.service";
 import {useLoggedUserStore} from "@/accountManagement/stores/loggedUserStore";
+import {updateAuthorizationHeader} from "@/shared/service/update-authorization-header";
 
 export default {
   name: "SignIn",
@@ -47,6 +48,7 @@ export default {
     return {
       emailError: null,
       passwordError: null,
+      userType: undefined,
       credentials: {
         email: '',
         password: '',
@@ -65,13 +67,18 @@ export default {
     },*/
     async login() {
       const loggedUserStore = useLoggedUserStore();
+      this.authService = new AuthApiService();
       //const registeredUserStore = useRegisteredUserStore();
       try {
         if (this.credentials.email && this.credentials.password) {
-          this.authService = new AuthApiService();
-           this.response = await this.authService.login(this.credentials);
-           //localStorage.setItem('token',this.response.data.token)
-          loggedUserStore.token = this.response.data.token
+
+           await this.authService.login(this.credentials).then((response) => {
+             loggedUserStore.token = response.data.token;
+             this.userType = response.data.userType;
+             updateAuthorizationHeader();
+           });
+
+
           /*if (registeredUserStore.haveUserRegistered) {
             switch (registeredUserStore.type) {
               case "artist":
@@ -82,7 +89,7 @@ export default {
                 break;
             }
           }*/
-          switch (this.response.data.userType) {
+          switch (this.userType) {
             case "Artist":
               alert("Artista logeado")
               //this.navigateToArtistHome();
@@ -98,7 +105,7 @@ export default {
         }
         // Procesa la respuesta (por ejemplo, guarda el token JWT en el estado de autenticación).
       } catch (error) {
-        console.log(' error');// Maneja los errores de inicio de sesión.
+        //console.log(' error');// Maneja los errores de inicio de sesión.
       }
     },
 

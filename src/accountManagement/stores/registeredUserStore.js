@@ -7,6 +7,7 @@ export const useRegisteredUserStore = defineStore("registeredUser", {
             type: null
         }
     },
+    persist: true,
     getters: {
         haveUserRegistered() {
             return !isNull(this.type);
