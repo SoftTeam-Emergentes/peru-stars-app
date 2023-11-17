@@ -33,10 +33,12 @@
 </template>
 <script>
 import {ArtworkApiService} from "@/artworkManagement/services/artwork.api.service";
+import {userAuth} from "@/accountManagement/stores/auth";
 
 export default {
   name: "top-artwork",
   artistService:null,
+  authService: null,
   data(){
     return{
       artists:{},
@@ -71,8 +73,9 @@ export default {
 
   methods:{
     getTopArtist() {
-      this.artistService=  new ArtworkApiService();
-      this.artistService.getAll().then((response)=>{
+      this.authService = userAuth();
+      this.artworkService=  new ArtworkApiService(this.authService.token);
+      this.artworkService.getAll().then((response)=>{
         this.artists=response.data;
         console.log()
       })

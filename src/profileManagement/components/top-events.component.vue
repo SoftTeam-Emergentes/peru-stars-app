@@ -37,10 +37,12 @@
 <script>
 
 import {EventsApiService} from "@/eventManagement/services/event-api.service";
+import {userAuth} from "@/accountManagement/stores/auth";
 export default {
   name: "top-events",
 
   artEventService: null,
+  authService: null,
   data() {
     return {
       locationCountry:"Peru",
@@ -80,7 +82,8 @@ export default {
 
   methods: {
     getTopArtEvent() {
-      this.artEventService = new EventsApiService();
+      this.authService = userAuth();
+      this.artEventService = new EventsApiService(this.authService.token);
       this.artEventService.getAll().then((response) => {
         this.events = response.data;
         console.log()

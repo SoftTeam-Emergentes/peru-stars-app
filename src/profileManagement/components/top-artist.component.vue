@@ -28,10 +28,12 @@
 
 <script>
 import {ArtistsApiService} from "@/profileManagement/services/artist-api.service";
+import {userAuth} from "@/accountManagement/stores/auth";
 
 export default {
   name: "top-artist",
   artistService:null,
+  authService: null,
   data(){
     return{
       artists:{},
@@ -66,7 +68,8 @@ export default {
 
   methods:{
     getTopArtist() {
-      this.artistService=  new ArtistsApiService();
+      this.authService = userAuth();
+      this.artistService=  new ArtistsApiService(this.authService.token);
       this.artistService.getAll().then((response)=>{
         this.artists=response.data;
         console.log()

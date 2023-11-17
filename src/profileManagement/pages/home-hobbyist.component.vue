@@ -27,6 +27,7 @@ import SideBarHobbyist from "@/profileManagement/components/side-bar-hobbyist.co
 import TopArtist from "@/profileManagement/components/top-artist.component.vue";
 import TopArt from "@/profileManagement/components/top-artwork.component.vue";
 import TopEvents from "@/profileManagement/components/top-events.component.vue";
+import {userAuth} from "@/accountManagement/stores/auth";
 
 
 
@@ -37,9 +38,15 @@ export default {
 
   data(){
     return{
+      authService: undefined,
       screenIsWide: true,
+      token: undefined
     }
 
+  },
+  created() {
+    this.authService = userAuth();
+    this.token = this.authService.token;
   },
   mounted() {
     // Escuchar el evento de cambio de tamaño de la pantalla
@@ -47,6 +54,7 @@ export default {
 
     // Llamar a la función para verificar el ancho de pantalla al cargar la página
     this.checkScreenWidth();
+
   },
   methods: {
     checkScreenWidth() {

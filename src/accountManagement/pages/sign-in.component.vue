@@ -38,8 +38,8 @@
 
 <script>
 
-import {AuthApiService} from "@/accountManagement/services/auth-api.service";
-import {updateAuthorizationHeader} from "@/shared/service/update-authorization-header";
+
+import {userAuth} from "@/accountManagement/stores/auth";
 
 export default {
   name: "SignIn",
@@ -68,13 +68,13 @@ export default {
     },
     async login() {
       //const loggedUserStore = useLoggedUserStore();
-      this.authService = new AuthApiService();
+      this.authService = userAuth();
       //const registeredUserStore = useRegisteredUserStore();
       try {
         if (this.credentials.email && this.credentials.password) {
           await this.authService.login(this.credentials);
-          this.userType = localStorage.getItem('userType');
-          updateAuthorizationHeader();
+          this.userType = this.authService.userType;
+          console.log("Tipo usuario: " + this.userType);
           console.log(this.userType)
           switch (this.userType) {
             case "Artist":

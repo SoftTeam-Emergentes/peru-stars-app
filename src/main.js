@@ -49,8 +49,8 @@ import Menu from "primevue/menu";
 
 
 
-const app = createApp(App)
 const pinia = createPinia()
+const app = createApp(App)
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
@@ -83,8 +83,5 @@ app.component('pv-input-group',InputGroup)
 app.component('pv-text-area',Textarea)
 app.component('pv-dialog',Dialog)
 app.component('pv-menu',Menu)
-
-
-
 
 app.mount('#app')
