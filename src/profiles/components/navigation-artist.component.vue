@@ -1,5 +1,4 @@
 
-
 <template>
   <div class=" card" style="height:92px" >
     <pv-toolbar :model="items" class="fixed  bg-gray-900 z-3 shadow-2" style="border-radius: 2rem; background-image: linear-gradient(to right, var(--red-400), var(--bluegray-800)) ;width: calc(100vw - 16px)">
@@ -8,9 +7,9 @@
       </template>
       <template #center>
         <div class="flex flex-wrap align-items-center gap-3">
-          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('home-hobbyist')"><i class="pi pi-home text-2xl" ></i></pv-button>
-          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('profile-hobbyist')"><i class="pi pi-user text-2xl"></i></pv-button >
-          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('home-hobbyist')"><i class="pi pi-search text-2xl"></i></pv-button >
+          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('home-artist')"><i class="pi pi-home text-2xl" ></i></pv-button>
+          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('profile-artist')"><i class="pi pi-user text-2xl"></i></pv-button >
+          <pv-button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" @click="navigate('artist-gallery')"><i class="pi pi-image text-2xl"></i></pv-button >
         </div>
       </template>
 
@@ -26,11 +25,13 @@
     </pv-toolbar>
   </div>
 </template>
+
+
 <script>
 import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
-  name: "navigation-bar",
+  name: "navigation-artist",
   data() {
     return {
       items: [
@@ -42,7 +43,7 @@ export default {
           label: 'Logout',
           icon: 'pi pi-sign-out',
           command: () => {
-           this.logout();this.$router.push({name:'sign-in'});
+            this.logout();this.$router.push({name:'sign-in'});
           }
         }
       ]
@@ -59,19 +60,14 @@ export default {
     navigate(name) {
       this.$router.push({name: name});
     },
-     getName(){
-       //console.log(Auth);
+    getName(){
+      //console.log(Auth);
       return useAuthStore().user.unique_name;
     }
   }
 }
 </script>
+
 <style scoped>
-@media (max-width: 500px) {
-  .logo {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-}
+
 </style>

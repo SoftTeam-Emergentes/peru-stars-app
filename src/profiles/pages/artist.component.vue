@@ -1,11 +1,15 @@
 <script>
+import NavigationArtist from "@/profiles/components/navigation-artist.component.vue";
+
 export default {
-  name: "artist"
+  name: "artist",
+  components: {NavigationArtist}
 }
 </script>
 
 <template>
-  <h1>Artist</h1>
+  <navigation-artist></navigation-artist>
+  <router-view></router-view>
 </template>
 
 <style scoped>

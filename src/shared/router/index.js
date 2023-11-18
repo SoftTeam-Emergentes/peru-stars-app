@@ -53,6 +53,16 @@ const router = createRouter({
           name: 'home-artist',
           component: () => import('@/profiles/pages/home-artist.component.vue'),
         },
+        {
+          path: 'profile',
+          name: 'profile-artist',
+          component: () => import('@/profiles/pages/profile-artist.component.vue'),
+        },
+        {
+          path: 'gallery',
+          name: 'artist-gallery',
+          component: () => import('@/profiles/pages/artist-gallery.component.vue'),
+        },
       ]
     },
 

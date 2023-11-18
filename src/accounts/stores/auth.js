@@ -22,12 +22,12 @@ export const useAuthStore = defineStore({
         async login(credential){
             try {
                 let response = await AuthApiService.login(credential);
-                console.log(response.token)
+                //console.log(response.token)
                 this.token = response.token;
                 this.userType=response.userType;
                 this.setUser(response.token);
-                console.log(this.token);
-                console.log(this.userType);
+                //console.log(this.token);
+               // console.log(this.userType);
             }
             catch (error) {
                 console.log(error.message);
@@ -37,15 +37,19 @@ export const useAuthStore = defineStore({
             const base64Url = tokenValue.split('.')[1];
             const base64 = base64Url.replace('-', '+').replace('_', '/');
             const decodedToken = JSON.parse(atob(base64));
-            const userData = {
+            const names = decodedToken.unique_name.split(" ");
+            const firstName = names[0];
+            const lastName = names.slice(1).join(" ");
+            this.user = {
                 id: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid"],
                 email: decodedToken.email,
+                firstName:firstName,
+                lastName:lastName,
                 unique_name: decodedToken.unique_name,
                 nbf: decodedToken.nbf,
                 exp: decodedToken.exp,
                 iat: decodedToken.iat
             };
-            this.user = JSON.stringify(userData);
         },
         clear() {
             this.token = null;

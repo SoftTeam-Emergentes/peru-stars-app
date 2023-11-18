@@ -94,10 +94,10 @@
           </div>
           <div v-else-if="selectedUser==='hobbyist'" class="card flex flex-wrap justify-content-center gap-2 ">
 
-              <div class=" col-4">
-                <label class="block text-900 font-medium ">Age</label>
-                <pv-input-text class="w-full" v-model="hobbyist.age" type="number" placeholder="your age"/>
-              </div>
+            <div class=" col-4">
+              <label class="block text-900 font-medium ">Age</label>
+              <pv-input-text class="w-full" v-model="hobbyist.age" type="number" placeholder="your age"/>
+            </div>
 
 
           </div>
@@ -116,7 +116,7 @@
 
 
 import {AuthApiService} from "@/accounts/services/auth-api.service";
-import {useRegisteredUserStore} from "@/accounts/stores/registeredUserStore";
+//import {useRegisteredUserStore} from "@/accounts/stores/registeredUserStore";
 import {hobbyistsApiService} from "@/profiles/services/hobbyist-api.service";
 import {ArtistsApiService} from "@/profiles/services/artist-api.service";
 
@@ -158,9 +158,9 @@ export default {
         genre: 'default',
         collected: true
       },
-      hobbyist:{
-        age:0,
-        collected:true
+      hobbyist: {
+        age: 0,
+        collected: true
       }
     }
 
@@ -170,28 +170,29 @@ export default {
       this.$router.push({name: 'sign-in'});
     },
     async register() {
-      const registeredUserStore = useRegisteredUserStore();
+      //const registeredUserStore = useRegisteredUserStore();
       let body = undefined;
       try {
         if (this.userInfo.password === this.confirmationPassword && this.selectedUser != null) {
           this.error = false;
           this.authService = new AuthApiService();
-          this.hobbyistService = new hobbyistsApiService();
-          this.artistService = new ArtistsApiService();
           const response = await this.authService.register(this.userInfo)
           console.log(response);
+          console.log(this.selectedUser);
           switch (this.selectedUser) {
             case "hobbyist":
+              this.hobbyistService = new hobbyistsApiService();
               body = {
-                userId: response.data.userId,
+                userId: response.userId,
                 age: this.hobbyist.age
               };
-
-              await this.hobbyistService.create(body);
+              const HobbyistResponse = await this.hobbyistService.create(body);
+              //console.log(HobbyistResponse);
               break;
             case "artist":
+              this.artistService = new ArtistsApiService();
               body = {
-                userId: response.data.userId,
+                userId: response.userId,
                 age: this.artist.age,
                 brandName: this.artist.brandName,
                 description: this.artist.description,
@@ -201,10 +202,12 @@ export default {
                 genre: this.artist.genre,
                 socialMediaLink: [""]
               };
-              await this.artistService.create(body);
+              const ArtistResponse = await this.artistService.create(body);
+              console.log(ArtistResponse);
+              break;
           }
           this.navigateToSingIn();
-          registeredUserStore.type = this.selectedUser;
+          // registeredUserStore.type = this.selectedUser;
         } else {
           this.error = true;
           console.log('Passwords do not match');

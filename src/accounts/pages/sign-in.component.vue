@@ -38,8 +38,6 @@
 
 <script>
 
-
-import {updateAuthorizationHeader} from "@/shared/service/update-authorization-header";
 import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
@@ -77,7 +75,6 @@ export default {
           await this.UseAuthStore.login(this.credentials);
           //this.userType = localStorage.getItem('userType');
           this.userType = this.UseAuthStore.userType;
-          updateAuthorizationHeader();
           console.log(this.userType)
           switch (this.userType) {
             case "Artist":
