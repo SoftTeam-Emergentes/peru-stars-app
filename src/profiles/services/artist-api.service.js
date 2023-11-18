@@ -1,13 +1,11 @@
 import http from '../../shared/service/http-common';
 
-const loggedUserStore = localStorage.getItem('userType');
 export class ArtistsApiService {
+    constructor(token = null) {
+        http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
     getAll() {
-        return http.get('/artists', /*{
-            headers: {
-                'Authorization': `Bearer ${loggedUserStore}`
-            }
-        }*/);
+        return http.get('/artists');
     }
 
     getById(id) {

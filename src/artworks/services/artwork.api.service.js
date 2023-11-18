@@ -1,6 +1,9 @@
 import http from '../../shared/service/http-common';
 
 export class ArtworkApiService {
+    constructor(token) {
+        http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
     getAll() {
         return http.get('/artworks');
     }
