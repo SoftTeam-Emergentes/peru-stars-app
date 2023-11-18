@@ -1,7 +1,7 @@
 <script>
 
 
-import NavigationBar from "@/profileManagement/components/navigation-bar.component.vue"
+import NavigationBar from "@/profiles/components/navigation-bar.component.vue"
 
 
 export default {

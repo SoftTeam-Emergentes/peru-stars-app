@@ -42,7 +42,7 @@
 
 <script>
 import axios from "axios";
-import CardEditHobbyist from "@/profileManagement/components/card-edit-hobbyist.component.vue";
+import CardEditHobbyist from "@/profiles/components/card-edit-hobbyist.component.vue";
 
 export default {
   name: "profile-hobbyist",

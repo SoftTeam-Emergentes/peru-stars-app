@@ -36,7 +36,7 @@
 </template>
 <script>
 
-import {EventsApiService} from "@/eventManagement/services/event-api.service";
+import {EventsApiService} from "@/events/services/event-api.service";
 export default {
   name: "top-events",
 

@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import {userAuth} from "@/accountManagement/stores/auth";
+import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
   name: "navigation-bar",
@@ -53,7 +53,7 @@ export default {
       this.$refs.menu.toggle(event);
     },
     logout(){
-      const Auth=userAuth();
+      const Auth=useAuthStore();
       Auth.clear();
     },
     navigate(name) {

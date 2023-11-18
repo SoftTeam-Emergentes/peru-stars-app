@@ -115,10 +115,10 @@
 <script>
 
 
-import {AuthApiService} from "@/accountManagement/services/auth-api.service";
-import {useRegisteredUserStore} from "@/accountManagement/stores/registeredUserStore";
-import {hobbyistsApiService} from "@/profileManagement/services/hobbyist-api.service";
-import {ArtistsApiService} from "@/profileManagement/services/artist-api.service";
+import {AuthApiService} from "@/accounts/services/auth-api.service";
+import {useRegisteredUserStore} from "@/accounts/stores/registeredUserStore";
+import {hobbyistsApiService} from "@/profiles/services/hobbyist-api.service";
+import {ArtistsApiService} from "@/profiles/services/artist-api.service";
 
 export default {
   name: "Sign-up",

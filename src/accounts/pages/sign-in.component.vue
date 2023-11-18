@@ -29,8 +29,8 @@
           <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
         </div>
       </form>
-      <pv-button @click="login()" label="Sign In" icon="pi pi-user" class="w-full"></pv-button>
-
+      <pv-button @click="login" label="Sign In" icon="pi pi-user" class="w-full"></pv-button>
+      <p>{{this.credentials.email.toString()}}</p>
     </div>
   </div>
   </body>
@@ -38,18 +38,21 @@
 
 <script>
 
-import {AuthApiService} from "@/accountManagement/services/auth-api.service";
+
 import {updateAuthorizationHeader} from "@/shared/service/update-authorization-header";
+import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
   name: "SignIn",
 
-  authService: null,
+
   data() {
     return {
+      UseAuthStore: useAuthStore(),
       emailError: null,
       passwordError: null,
       userType: undefined,
+
       credentials: {
         email: '',
         password: '',
@@ -68,12 +71,12 @@ export default {
     },
     async login() {
       //const loggedUserStore = useLoggedUserStore();
-      this.authService = new AuthApiService();
       //const registeredUserStore = useRegisteredUserStore();
       try {
         if (this.credentials.email && this.credentials.password) {
-          await this.authService.login(this.credentials);
-          this.userType = localStorage.getItem('userType');
+          await this.UseAuthStore.login(this.credentials);
+          //this.userType = localStorage.getItem('userType');
+          this.userType = this.UseAuthStore.userType;
           updateAuthorizationHeader();
           console.log(this.userType)
           switch (this.userType) {
@@ -84,7 +87,6 @@ export default {
               this.navigateToHobbyistHome();
               break;
           }
-          console.log(this.response);
         } else {
           this.messageWarning();
           console.log(this.response);

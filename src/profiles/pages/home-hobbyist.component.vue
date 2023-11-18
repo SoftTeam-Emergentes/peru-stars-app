@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import SideBarHobbyist from "@/profileManagement/components/side-bar-hobbyist.component.vue";
-import TopArtist from "@/profileManagement/components/top-artist.component.vue";
-import TopArt from "@/profileManagement/components/top-artwork.component.vue";
-import TopEvents from "@/profileManagement/components/top-events.component.vue";
+import SideBarHobbyist from "@/profiles/components/side-bar-hobbyist.component.vue";
+import TopArtist from "@/profiles/components/top-artist.component.vue";
+import TopArt from "@/profiles/components/top-artwork.component.vue";
+import TopEvents from "@/profiles/components/top-events.component.vue";
 
 
 

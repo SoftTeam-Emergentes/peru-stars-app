@@ -32,7 +32,7 @@
 
 </template>
 <script>
-import {ArtworkApiService} from "@/artworkManagement/services/artwork.api.service";
+import {ArtworkApiService} from "@/artworks/services/artwork.api.service";
 
 export default {
   name: "top-artwork",

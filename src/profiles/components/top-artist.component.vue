@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {ArtistsApiService} from "@/profileManagement/services/artist-api.service";
+import {ArtistsApiService} from "@/profiles/services/artist-api.service";
 
 export default {
   name: "top-artist",

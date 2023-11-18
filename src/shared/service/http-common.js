@@ -1,17 +1,19 @@
 import axios from 'axios';
-import {userAuth} from "@/accountManagement/stores/auth";
+import {useAuthStore} from "@/accounts/stores/auth";
 //API runs in port 3000, consider this for all services.js
-const loggedUserStore = userAuth();
+
 const http = axios.create({
     baseURL: 'https://perustarsdddapi.azurewebsites.net/api/v1',
     //baseURL: 'http://localhost:5001/api/v1',
 
-    headers: {
-        common: {
+});
+http.interceptors.request.use((config) => {
+    const authStore = useAuthStore();
+    const token = authStore.token;
 
-            'Authorization': `Bearer ${loggedUserStore.token}`
-        }
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-
-})
+    return config;
+});
 export default http;
