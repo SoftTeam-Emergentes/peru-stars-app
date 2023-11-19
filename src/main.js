@@ -43,6 +43,7 @@ import InputGroup from 'primevue/inputgroup';
 import Textarea from "primevue/textarea";
 import Dialog from "primevue/dialog";
 import Menu from "primevue/menu";
+import Galleria from "primevue/galleria";
 
 
 
@@ -83,5 +84,6 @@ app.component('pv-input-group',InputGroup)
 app.component('pv-text-area',Textarea)
 app.component('pv-dialog',Dialog)
 app.component('pv-menu',Menu)
+app.component('pv-galleria', Galleria)
 
 app.mount('#app')
