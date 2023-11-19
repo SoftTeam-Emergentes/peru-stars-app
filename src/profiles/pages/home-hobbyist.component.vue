@@ -3,7 +3,7 @@
 <template>
 
   <body>
-  <div class="flex flex-row ">
+  <div class="flex flex-row  " style=" width:calc( 100vw - 20px )">
     <div v-if="screenIsWide" >
       <side-bar-hobbyist ></side-bar-hobbyist>
     </div>
@@ -11,7 +11,6 @@
       <top-artist></top-artist>
       <top-art></top-art>
       <top-events></top-events>
-
 
     </div>
 

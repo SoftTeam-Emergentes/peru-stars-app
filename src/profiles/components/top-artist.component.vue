@@ -2,10 +2,10 @@
 
 <template>
   <div >
-    <div class="mx-6 my-4 text-2xl font-semibold mb-3">Artists</div>
+    <div class="mx-6 my-4 text-2xl font-semibold mb-3 ">Artists</div>
     <pv-carousel :value="artists" :numVisible="3" :numScroll="1" :responsiveOptions="responsiveOptions" circular :autoplayInterval="3000"  >
       <template #item="slotProps">
-        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 shadow-5">
+        <div class="bg-primary-100 border-1 surface-border border-round m-2 text-center py-5 px-3 shadow-5">
           <div class="">
             <img :src="getImage()" :alt="slotProps.data.brandname" class="border-round-lg shadow-2" style="height: 150px; width: auto; max-width: 100%;"/>
           </div>

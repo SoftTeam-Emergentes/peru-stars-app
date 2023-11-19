@@ -10,7 +10,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 //Add PrimeFlex
 import 'primeflex/primeflex.css';
 //Add Theme
-import "primevue/resources/themes/lara-light-indigo/theme.css";
+import "primevue/resources/themes/mira/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 

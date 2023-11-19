@@ -1,19 +1,13 @@
 
 
 <template>
-  <div class="mx-auto">
-    <div class="shape">
-      <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-        <path d="M-5.92,83.38 C-5.92,84.38 509.31,143.58 509.87,144.56 L500.00,150.00 L0.00,150.00 Z"
-              style="stroke: none; fill: #fff;"></path>
-      </svg>
-    </div>
+  <div class="card grid w-full" style="margin: auto;">
 
-    <div class="grid grid-nogutter surface-section text-800 shadow-8" style="max-width: 1000px; margin: auto;">
-      <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+    <div class="grid  surface-section text-800 shadow-8" style="max-width: 850px;width: auto; margin: auto;">
+      <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center  ">
         <section>
-          <span class="block text-6xl font-bold mb-1">Welcome <span style="color: red;">{{getName()}}</span> Enjoy the arts on display</span>
-          <div class="text-6xl text-primary font-bold mb-3">visitors deserve to see</div>
+          <span class="block text-4xl font-bold mb-1">Welcome <span style="color: red;">{{getName()}}</span> Enjoy the arts on display</span>
+          <div class="text-4xl text-primary font-bold mb-3">visitors deserve to see</div>
           <p class="mt-0 mb-4 text-700 line-height-3">
             <i class="pi pi-envelope" style="font-size: 1.5rem; color: darkslategray;"> : {{ getEmail() }}</i><br>
             <i class="pi pi-user" style="font-size: 1.5rem; color: darkslategray;"> : {{getAge()}} años</i><br>
@@ -26,18 +20,10 @@
       </div>
 
       <div class="col-12 md:col-6 overflow-hidden">
-        <img :src="getImage()" alt="Image" class="md:ml-auto block md:h-full"
+        <img :src="getImage()" alt="Image" class="md:ml-auto  md:h-auto sm:w-full  w-full"
              style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)" />
       </div>
     </div>
-
-    <pv-card class="mx-10 mt-10 top-content" style="background-color: transparent; box-shadow: none;">
-      <div class="flex-column ml-10 mr-5 image-profile">
-        <div class="d-block text-center white--text text-h5 font-weight-bold">Hobbyist Name</div>
-        <img src="https://picsum.photos/id/177/800" alt="artist image" width="200" height="200"
-             class="rounded-circle">
-      </div>
-    </pv-card>
 
     <div class="card grid" style="margin: auto;">
       <div class="col-12 md:col-6 lg:col-4">

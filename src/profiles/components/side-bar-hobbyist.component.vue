@@ -1,7 +1,7 @@
 <template>
 
-    <div class="w-15rem " style="height: calc(100vh - 105px )"></div>
-    <div class=" shadow-7 w-15rem border-round-right-2xl fixed" style="height: calc(100vh - 100px );top: 99px">
+    <div class=" flex  w-15rem " style="height: calc(100vh - 105px )"></div>
+    <div class=" shadow-7 w-15rem border-round-right-2xl fixed " style="height: calc(100vh - 100px );top: 99px">
         <pv-list-box v-model="selectArtist" :options="ArtistFavorites"  class="w-full " listStyle="height:calc(50vh - 110px)" data-key="id" >
           <template #header > <div class="mr-3 font-semibold border-2 border-round-right-2xl" style="background-color: #DA5B5E; color: white">
             <p class="ml-3">Your artist</p>
