@@ -7,8 +7,8 @@
     </div>
     <pv-dialog v-model:visible="showDialog" header="Agregar obra de arte">
       <p>Aquí puedes agregar tu código para manejar la adición de una obra de arte.</p>
+      <card-add-artwork :addArtwork="addArtwork"/>
       <template #footer>
-        <pv-button label="Agregar" @click="addArtwork()"/>
         <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text"/>
       </template>
     </pv-dialog>
@@ -32,8 +32,13 @@
 </template>
 
 <script>
+import CardAddArtwork from "@/profiles/components/card-add-artwork-component.vue";
+import {ArtworkApiService} from "@/artworks/services/artwork.api.service";
+import {useAuthStore} from "@/accounts/stores/auth";
+
 export default {
   name: "artist-gallery",
+  components: {CardAddArtwork},
   data() {
     return {
       showDialog: false,
@@ -51,7 +56,8 @@ export default {
       ],
       activeIndex: 0,
       numVisible: 3,
-      displayCustom: false
+      displayCustom: false,
+      artworkService: undefined
     };
   },
 
@@ -60,8 +66,14 @@ export default {
       this.activeIndex = index;
       this.displayCustom = true;
     },
-    addArtwork() {
-
+    addArtwork(artwork) {
+      this.artworkService = new ArtworkApiService();
+      this.artworkService.create(useAuthStore().user.typeId, artwork);
+    },
+    selectImage(image, event) {
+      image.value = event.target.files[0];
+      alert(image.value);
+      return image;
     }
   }
 }

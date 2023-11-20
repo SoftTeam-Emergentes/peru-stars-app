@@ -9,6 +9,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "ascii85": "^1.0.2",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
     "json-server": "^0.17.4",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.0",

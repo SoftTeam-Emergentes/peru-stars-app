@@ -7,7 +7,6 @@ export const useAuthStore = defineStore({
         return {
             token : null,// ref(localStorage.getItem('token'));
             user : null ,//ref(localStorage.getItem('user'));
-            userType : null//ref(localStorage.getItem('userType'));
         };
     },
     persist:true,
@@ -48,13 +47,14 @@ export const useAuthStore = defineStore({
                 unique_name: decodedToken.unique_name,
                 nbf: decodedToken.nbf,
                 exp: decodedToken.exp,
-                iat: decodedToken.iat
+                iat: decodedToken.iat,
+                type: decodedToken.role,
+                typeId: decodedToken.nameid
             };
         },
         clear() {
             this.token = null;
             this.user = null;
-            this.userType = null;
         },
 
     },

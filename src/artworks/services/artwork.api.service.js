@@ -1,9 +1,9 @@
 import http from '../../shared/service/http-common';
 
 export class ArtworkApiService {
-    constructor(token) {
+    /*constructor(token) {
         http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    }
+    }*/
     getAll() {
         return http.get('/artworks');
     }
@@ -12,8 +12,8 @@ export class ArtworkApiService {
         return http.get(`/artworks/${id}`);
     }
 
-    create(data) {
-        return http.post('/artworks', data);
+    create(artistId, data) {
+        return http.post(`/artworks/artists/${artistId}`, data);
     }
 
     update(id, data) {
