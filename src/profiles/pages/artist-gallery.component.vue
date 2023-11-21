@@ -91,8 +91,11 @@ export default {
       artEvent.startDateTime = date.toISOString();
       artEvent.collected = false;
       artEvent.currentStatus = 0;
-      console.log(artEvent);
-      //this.artEventService.create(artEvent);
+      //console.log(artEvent);
+      this.artEventService.create(artEvent).then((response => {
+        console.log(response.data);
+        this.showAddArtEventDialog = false;
+      }));
     },
     selectImage(image, event) {
       image.value = event.target.files[0];
