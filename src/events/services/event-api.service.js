@@ -13,7 +13,7 @@ export class EventsApiService {
     }
 
     create(data) {
-        return http.post('/art-events', data);
+        return http.post('/art-events/add', data);
     }
 
     update(id, data) {

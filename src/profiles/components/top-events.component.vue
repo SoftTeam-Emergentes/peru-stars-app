@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mx-6 my-4 text-2xl font-semibold mb-3">Artwork</div>
+    <div class="mx-6 my-4 text-2xl font-semibold mb-3">Art events</div>
     <pv-carousel :value="events" :numVisible="3" :numScroll="1" :responsiveOptions="responsiveOptions" circular
                  :autoplayInterval="3000">
       <template #item="slotProps">
@@ -11,10 +11,10 @@
           </template>
           <template #title> {{ slotProps.data.title }}</template>
           <template #subtitle>
-            <p class="m-0 p-0"><i class="pi pi-map"/> {{ locationCountry }}  {{locationCity}} </p>
+            <p class="m-0 p-0"><i class="pi pi-map"/> {{ slotProps.data.location.country }}  {{slotProps.data.location.city}} </p>
             <div class="flex justify-content-between flex-wrap" >
 
-              <i class="pi pi-calendar">{{ slotProps.data.startDateTime}}</i>
+              <i class="pi pi-calendar">{{ getVisibleDate(slotProps.data.startDateTime)}}</i>
               <pv-tag :value="slotProps.data.currentStatus" :severity="getSeverity(slotProps.data)"></pv-tag>
             </div>
           </template>
@@ -37,6 +37,7 @@
 <script>
 
 import {EventsApiService} from "@/events/services/event-api.service";
+
 export default {
   name: "top-events",
 
@@ -103,6 +104,12 @@ export default {
         default:
           return null;
       }
+    },
+    getVisibleDate(dateStr) {
+      let date = new Date(dateStr);
+      return date.toLocaleString();
+      //console.log(date.toISOString());
+      //return date.toISOString().replace("T", " ").replace(".000Z", "").replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1");
     }
   }
 

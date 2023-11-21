@@ -30,7 +30,6 @@
         </div>
       </form>
       <pv-button @click="login" label="Sign In" icon="pi pi-user" class="w-full"></pv-button>
-      <p>{{this.credentials.email.toString()}}</p>
     </div>
   </div>
   </body>
