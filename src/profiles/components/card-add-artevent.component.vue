@@ -29,6 +29,12 @@ export default {
   </div>
   <div class="col-12 md:col-6 my-1">
       <span class="p-float-label">
+        <pv-calendar id="startDateTime" dateFormat="dd/mm/yy" v-model="artEvent.startDateTime" showTime hourFormat="12"/>
+        <label for="description">Fecha y hora</label>
+      </span>
+  </div>
+  <div class="col-12 md:col-6 my-1">
+      <span class="p-float-label">
         <pv-input-text class="w-full" id="country" v-model="artEvent.country"/>
         <label for="country">País</label>
     </span>

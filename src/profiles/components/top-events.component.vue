@@ -107,14 +107,9 @@ export default {
     },
     getVisibleDate(dateStr) {
       let date = new Date(dateStr);
-      console.log(date.toISOString());
-      let newDate = date.toISOString().replace("T", " ").replace(".000Z", "").replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1");
-      console.log(newDate);
-      let hour = date.getHours();
-      console.log(hour);
-      let indicator = hour < 12 ? "am" : "pm";
-      console.log(indicator);
-      return newDate + indicator;
+      return date.toLocaleString();
+      //console.log(date.toISOString());
+      //return date.toISOString().replace("T", " ").replace(".000Z", "").replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1");
     }
   }
 

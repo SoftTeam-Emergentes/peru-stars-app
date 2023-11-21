@@ -86,9 +86,8 @@ export default {
       this.artworkService.create(useAuthStore().user.typeId, artwork);
     },
     addArtEvent(artEvent) {
-      let date = new Date();
+      //let date = new Date(artEvent.startDateTime);
       artEvent.artistId = useAuthStore().user.typeId;
-      artEvent.startDateTime = date.toISOString();
       artEvent.collected = false;
       artEvent.currentStatus = 0;
       //console.log(artEvent);

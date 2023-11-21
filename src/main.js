@@ -46,6 +46,7 @@ import Menu from "primevue/menu";
 import Galleria from "primevue/galleria";
 import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
+import Calendar from "primevue/calendar";
 
 
 
@@ -69,6 +70,7 @@ app.component("pv-input-text",InputText);
 app.component("pv-input-number", InputNumber);
 app.component("pv-input-switch", InputSwitch);
 app.component('pv-carousel', Carousel);
+app.component('pv-calendar', Calendar);
 app.component('pv-data-view', DataView);
 app.component('pv-menubar', Menubar);
 app.component('pv-avatar', Avatar);
