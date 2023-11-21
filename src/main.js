@@ -44,6 +44,8 @@ import Textarea from "primevue/textarea";
 import Dialog from "primevue/dialog";
 import Menu from "primevue/menu";
 import Galleria from "primevue/galleria";
+import InputNumber from "primevue/inputnumber";
+import InputSwitch from "primevue/inputswitch";
 
 
 
@@ -62,8 +64,10 @@ app.use(ToastService);
 app.directive('pv-styleClass', StyleClass);
 
 // PrimeVue Component
-app.component("pv-button",Button)
-app.component("pv-input-text",InputText)
+app.component("pv-button",Button);
+app.component("pv-input-text",InputText);
+app.component("pv-input-number", InputNumber);
+app.component("pv-input-switch", InputSwitch);
 app.component('pv-carousel', Carousel);
 app.component('pv-data-view', DataView);
 app.component('pv-menubar', Menubar);

@@ -2,14 +2,23 @@
 
   <div class="">
     <div class="mb-3 flex bg-black-alpha-10 justify-content-center align-items-center align-content-center">
-      <pv-button icon="pi pi-plus" @click="showDialog = true" label="Add Artwork" severity="secondary"
+      <pv-button icon="pi pi-plus" @click="showAddArtworkDialog = true" label="Add Artwork" severity="secondary"
+                 class="ml-2 m-4"/>
+      <pv-button icon="pi pi-plus" @click="showAddArtEventDialog = true" label="Add Art event" severity="secondary"
                  class="ml-2 m-4"/>
     </div>
-    <pv-dialog v-model:visible="showDialog" header="Agregar obra de arte">
+    <pv-dialog v-model:visible="showAddArtworkDialog" header="Agregar obra de arte">
       <p>Aquí puedes agregar tu código para manejar la adición de una obra de arte.</p>
       <card-add-artwork :addArtwork="addArtwork"/>
       <template #footer>
-        <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text"/>
+        <pv-button label="Cancelar" @click="showAddArtworkDialog = false" class="p-button-text"/>
+      </template>
+    </pv-dialog>
+    <pv-dialog v-model:visible="showAddArtEventDialog" header="Agregar evento de arte">
+      <p>Aquí puedes agregar tu código para manejar la adición de un evento de arte.</p>
+      <card-add-artevent :addArtEvent="addArtEvent"/>
+      <template #footer>
+        <pv-button label="Cancelar" @click="showAddArtworkDialog = false" class="p-button-text"/>
       </template>
     </pv-dialog>
     <pv-galleria v-model:activeIndex="activeIndex" v-model:visible="displayCustom" :value="images"
@@ -35,13 +44,16 @@
 import CardAddArtwork from "@/profiles/components/card-add-artwork-component.vue";
 import {ArtworkApiService} from "@/artworks/services/artwork.api.service";
 import {useAuthStore} from "@/accounts/stores/auth";
+import CardAddArtevent from "@/profiles/components/card-add-artevent.component.vue";
+import {EventsApiService} from "@/events/services/event-api.service";
 
 export default {
   name: "artist-gallery",
-  components: {CardAddArtwork},
+  components: {CardAddArtevent, CardAddArtwork},
   data() {
     return {
-      showDialog: false,
+      showAddArtworkDialog: false,
+      showAddArtEventDialog: false,
       images: [
         {src: 'https://source.unsplash.com/collection/38682905/0', alt: 'Image 1'},
         {src: 'https://source.unsplash.com/collection/38682905/1', alt: 'Image 2'},
@@ -57,18 +69,30 @@ export default {
       activeIndex: 0,
       numVisible: 3,
       displayCustom: false,
-      artworkService: undefined
+      artworkService: undefined,
+      artEventService: undefined
     };
   },
-
+  created() {
+    this.artworkService = new ArtworkApiService();
+    this.artEventService = new EventsApiService();
+  },
   methods: {
     imageClick(index) {
       this.activeIndex = index;
       this.displayCustom = true;
     },
     addArtwork(artwork) {
-      this.artworkService = new ArtworkApiService();
       this.artworkService.create(useAuthStore().user.typeId, artwork);
+    },
+    addArtEvent(artEvent) {
+      let date = new Date();
+      artEvent.artistId = useAuthStore().user.typeId;
+      artEvent.startDateTime = date.toISOString();
+      artEvent.collected = false;
+      artEvent.currentStatus = 0;
+      console.log(artEvent);
+      //this.artEventService.create(artEvent);
     },
     selectImage(image, event) {
       image.value = event.target.files[0];
