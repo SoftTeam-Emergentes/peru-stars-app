@@ -117,8 +117,8 @@
 
 import {AuthApiService} from "@/accounts/services/auth-api.service";
 //import {useRegisteredUserStore} from "@/accounts/stores/registeredUserStore";
-import {hobbyistsApiService} from "@/profiles/services/hobbyist-api.service";
 import {ArtistsApiService} from "@/profiles/services/artist-api.service";
+import {HobbyistsApiService} from "@/profiles/services/hobbyist-api.service";
 
 export default {
   name: "Sign-up",
@@ -181,7 +181,7 @@ export default {
           console.log(this.selectedUser);
           switch (this.selectedUser) {
             case "hobbyist":
-              this.hobbyistService = new hobbyistsApiService();
+              this.hobbyistService = new HobbyistsApiService();
               body = {
                 userId: response.userId,
                 age: this.hobbyist.age

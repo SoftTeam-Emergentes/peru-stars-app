@@ -74,7 +74,7 @@ export default {
         if (this.credentials.email && this.credentials.password) {
           await this.UseAuthStore.login(this.credentials);
           //this.userType = localStorage.getItem('userType');
-          this.userType = this.UseAuthStore.userType;
+          this.userType = this.UseAuthStore.user.type;
           console.log(this.userType)
           switch (this.userType) {
             case "Artist":

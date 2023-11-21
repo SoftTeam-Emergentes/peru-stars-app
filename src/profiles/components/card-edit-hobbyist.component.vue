@@ -68,7 +68,7 @@ export default {
     updateProfile() {
       // Realiza las operaciones de actualización
       // Puedes emitir el evento para informar a profile-hobbyist.vue
-      this.hobbyistService.update(1,this.hobbyist);
+      this.hobbyistService.update(useAuthStore().user.typeId,this.hobbyist);
       console.log(this.userId);
       this.authService.update(this.userId,this.user)
       useAuthStore().user.email=this.user.email;

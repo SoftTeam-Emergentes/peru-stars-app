@@ -1,14 +1,17 @@
 <script>
+import CardAddArtwork from "@/profiles/components/card-add-artwork-component.vue";
+
 export default {
   name: "profile-artist",
+  components: {CardAddArtwork},
   data() {
     return {
-      showDialog: false,
+      showEditArtistDialog: false,
     }
   },
   methods:{
     editArtist(){
-
+      this.showEditArtistDialog = false;
     }
   }
 }
@@ -39,15 +42,15 @@ export default {
             <li>Experiencia 3</li>
           </ul>
           <div class="m-0 flex bg-black-alpha-50 justify-content-center align-items-center align-content-center">
-            <pv-button icon="pi pi-plus" @click="showDialog = true" label="Add Artwork" severity="secondary"
+            <pv-button icon="pi pi-plus" @click="showEditArtistDialog = true" label="Edit user" severity="secondary"
                        class="ml-2 m-4"/>
           </div>
         </div>
-        <pv-dialog v-model:visible="showDialog" header="Agregar obra de arte">
+        <pv-dialog v-model:visible="showEditArtistDialog" header="Editar perfil">
           <p>Aquí puedes agregar tu código para manejar la adición de una obra de arte.</p>
           <template #footer>
             <pv-button label="Agregar" @click="editArtist()"/>
-            <pv-button label="Cancelar" @click="showDialog = false" class="p-button-text"/>
+            <pv-button label="Cancelar" @click="showEditArtistDialog = false" class="p-button-text"/>
           </template>
         </pv-dialog>
 

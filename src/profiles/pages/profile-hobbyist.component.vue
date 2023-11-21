@@ -108,7 +108,7 @@ export default {
       this.user.firstName= useAuthStore().user.firstName;
       this.user.lastName= useAuthStore().user.lastName;
       this.user.email= useAuthStore().user.email;
-      this.hobbyistService.getById(1).then((response) => {    //getById configurar para inicio de sesion copio el id del que inicio sesión
+      this.hobbyistService.getById(useAuthStore().user.typeId).then((response) => {    //getById configurar para inicio de sesion copio el id del que inicio sesión
         this.hobbyist.age = response.data.age;
 
         //console.log(this.hobbyist.age);
