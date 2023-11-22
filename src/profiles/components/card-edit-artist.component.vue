@@ -3,23 +3,16 @@
 <template>
 
   <div class=" card grid justify-content-center shadow-8 " style="max-width: 800px">
-    <div class="text-900 font-bold text-6xl mb-4 text-center w-full my-2">Edit Profile</div>
     <div class="col-12 md:col-6 my-1">
       <span class="p-float-label">
-        <pv-input-text class="w-full " id="firstName" v-model="artist.firstName"/>
+        <pv-input-text class="w-full " id="firstName" v-model="user.firstName"/>
         <label for="firstName">First name</label>
     </span>
     </div>
     <div class="col-12 md:col-6 my-1">
       <span class="p-float-label">
-        <pv-input-text class=" w-full  " id="lastName" v-model="artist.lastName"/>
+        <pv-input-text class=" w-full  " id="lastName" v-model="user.lastName"/>
         <label for="lastName">Last name</label>
-    </span>
-    </div>
-    <div class="col-12 md:col-6 my-1">
-      <span class="p-float-label">
-        <pv-input-text class=" w-full  " id="email" v-model="artist.email"/>
-        <label for="email">Email</label>
     </span>
     </div>
     <div class="col-12 md:col-6 my-1">
@@ -30,7 +23,7 @@
     </div>
     <div class="col-12 md:col-6 my-1">
       <span class="p-float-label">
-        <pv-input-text class=" w-full  " id="contactPhone" type="number" v-model="artist.contactPhone"/>
+        <pv-input-text class=" w-full  " id="contactPhone" type="number" v-model="artist.contactNumber"/>
         <label for="contactPhone">Contact Phone</label>
     </span>
     </div>
@@ -47,11 +40,10 @@
         <label for="age">Age</label>
     </span>
     </div>
-    <div class="col-12 md:col-6 my-1">
-      <span class="p-float-label">
-        <pv-input-text class=" w-full  " id="genre"  v-model="artist.genre"/>
-        <label for="genre">Genre</label>
-    </span>
+    <div class="col-4">
+      <label class="block text-900 font-medium ">Genre artist</label>
+      <pv-dropdown v-model="artist.genre" :options="typeGenre" class="w-full md:w-14rem"
+                   placeholder="Select genre"/>
     </div>
     <div class="col-12  my-1">
       <span class="p-float-label">
@@ -65,33 +57,38 @@
             <label for="description" >Description</label>
         </span>
     </div>
-    <div class="col-12  my-1">
-      <span class="p-float-label">
-        <pv-input-text class=" w-full  " id="password" type="password" v-model="artist.password"/>
-        <label for="password">Password</label>
-    </span>
-    </div>
-    <pv-button label="Update" icon="pi pi-user" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap my-4"></pv-button>
+    <pv-button label="Update" @click="editArtist(user, artist)" icon="pi pi-user" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap my-4"></pv-button>
 
   </div>
 </template>
 <script>
 export default {
   name: "card-edit-artist",
+  props: {
+    editArtist: Function
+  },
   data(){
     return{
-      artist:{
+      typeGenre: [
+        'MUSICIAN',
+        'FILMAKER',
+        'VISUALARTIST',
+        'WRITER',
+        'OTHER'],
+      user: {
         firstName: '',
         lastName: '',
-        email: '',
+      },
+      artist:{
+        age: 0,
         brandName: '',
         description:'',
         phrase:'',
-        contactPhone:'',
+        contactNumber:'',
         contactEmail:'',
-        age:'',
         genre:'',
         password: '',
+        socialMediaLink: [""]
       }
     }
   }
