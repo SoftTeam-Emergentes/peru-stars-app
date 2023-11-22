@@ -13,8 +13,9 @@
             <h5 class="mb-1">{{ slotProps.data.firstname }}</h5>
             <h6 class="mt-0 mb-3">{{ slotProps.data.description }}</h6>
              <div class="mt-5 flex align-items-center justify-content-center gap-2">
-              <pv-button icon="pi pi-user-plus" rounded @click="followedArtist(slotProps.data.artistId,)"/>
-              <pv-button  icon="pi pi-star-fill" rounded severity="secondary" />
+               <pv-button v-if="isArtistFollowed(slotProps.data.artistId)" icon="pi pi-user-plus" rounded disabled/>
+               <pv-button v-else icon="pi pi-user-plus" rounded @click="followedArtist(slotProps.data.artistId)"/>
+               <pv-button icon="pi pi-star-fill" rounded severity="secondary" />
             </div>
           </div>
         </div>
@@ -30,6 +31,7 @@
 import {ArtistsApiService} from "@/profiles/services/artist-api.service";
 import {HobbyistsApiService} from "@/profiles/services/hobbyist-api.service";
 import {FollowersApiService} from "@/profiles/services/follower-api.service";
+import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
   name: "top-artist",
@@ -39,6 +41,7 @@ export default {
   data(){
     return{
       artists:{},
+      followedArtists: {},
       follower:{
         artistId:null,
         hobbyistId:null,
@@ -69,16 +72,31 @@ export default {
   },
 
   created() {
+    this.followedService = new FollowersApiService();
+    this.artistService = new ArtistsApiService();
     this.getTopArtist()
+    this.getFollowedArtistsByUser();
   },
 
   methods:{
     getTopArtist() {
-      this.artistService=  new ArtistsApiService();
       this.artistService.getAll().then((response)=>{
         this.artists=response.data;
         console.log()
       })
+    },
+    getFollowedArtistsByUser() {
+      this.followedService.getArtistsFollowed(useAuthStore().user.typeId).then((response) => {
+        this.followedArtists = response.data;
+        console.log(response.data);
+      })
+    },
+    isArtistFollowed(artistId) {
+      for (let follower in this.followedArtists) {
+        if (follower.artistId == artistId)
+          return true;
+      }
+      return false;
     },
     getImage(){
       return `https://source.unsplash.com/collection/38682905/${this.getRandomNumber(1,6)}`;
@@ -86,13 +104,12 @@ export default {
     getRandomNumber(min, max){
       return Math.floor(Math.random() * (max - min) + min);
     },
-    followedArtist(userId){
-      this.follower.artistId=userId;
-      this.follower.hobbyistId= 2; /*agregar el id del hobbist de pinia*/
-      this.followedService=  new FollowersApiService();
+    followedArtist(artistId){
+      this.follower.artistId=artistId;
+      this.follower.hobbyistId= useAuthStore().user.typeId;
       this.followedService.createFollower(this.follower).then((response)=>{
-        console.log(response.data)
-      })
+        console.log(response.data);
+      });
     }
 
   }
