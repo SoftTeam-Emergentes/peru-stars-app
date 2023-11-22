@@ -8,7 +8,7 @@ export class FollowersApiService {
     createFollower(data) {
         return http.post('/followers',data);
     }
-
-
-
+    getArtistsFollowed(hobbyistId) {
+        return http.get(`/followers/artist/hobbyist/${hobbyistId}`);
+    }
 }
