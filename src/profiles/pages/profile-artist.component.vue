@@ -1,17 +1,36 @@
 <script>
 import CardAddArtwork from "@/profiles/components/card-add-artwork-component.vue";
+import CardEditArtist from "@/profiles/components/card-edit-artist.component.vue";
+import {AuthApiService} from "@/accounts/services/auth-api.service";
+import {ArtistsApiService} from "@/profiles/services/artist-api.service";
+import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
   name: "profile-artist",
-  components: {CardAddArtwork},
+  components: {CardEditArtist, CardAddArtwork},
   data() {
     return {
       showEditArtistDialog: false,
+      authService: undefined,
+      artistService: undefined
     }
   },
+  created() {
+    this.authService = new AuthApiService();
+    this.artistService = new ArtistsApiService();
+  },
   methods:{
-    editArtist(){
-      this.showEditArtistDialog = false;
+    editArtist(user, artist){
+      this.authService.update(useAuthStore().user.id, user).then((response) => {
+        console.log(response.data);
+        useAuthStore().firstName = user.firstName;
+        useAuthStore().lastName = user.lastName;
+        this.artistService.update(useAuthStore().user.typeId, artist).then((response2) => {
+          console.log(response2.data);
+          this.showEditArtistDialog = false;
+        });
+      });
+
     }
   }
 }
@@ -47,9 +66,9 @@ export default {
           </div>
         </div>
         <pv-dialog v-model:visible="showEditArtistDialog" header="Editar perfil">
-          <p>Aquí puedes agregar tu código para manejar la adición de una obra de arte.</p>
+          <p>Edita tu perfil</p>
+          <card-edit-artist :edit-artist="editArtist"/>
           <template #footer>
-            <pv-button label="Agregar" @click="editArtist()"/>
             <pv-button label="Cancelar" @click="showEditArtistDialog = false" class="p-button-text"/>
           </template>
         </pv-dialog>
