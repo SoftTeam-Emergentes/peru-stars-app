@@ -10,10 +10,10 @@
             <img :src="getImage()" :alt="slotProps.data.brandname" class="border-round-lg shadow-2" style="height: 150px; width: auto; max-width: 100%;"/>
           </div>
           <div>
-            <h5 class="mb-1">{{ slotProps.data.firstname }}</h5>
+            <h5 class="mb-1">{{ slotProps.data.brandName }}</h5>
             <h6 class="mt-0 mb-3">{{ slotProps.data.description }}</h6>
              <div class="mt-5 flex align-items-center justify-content-center gap-2">
-               <pv-button v-if="isArtistFollowed(slotProps.data.artistId)" icon="pi pi-user-plus" rounded disabled/>
+               <pv-button v-if="isArtistFollowed(slotProps.data.artistId)" disabled icon="pi pi-user-plus" rounded/>
                <pv-button v-else icon="pi pi-user-plus" rounded @click="followedArtist(slotProps.data.artistId)"/>
                <pv-button icon="pi pi-star-fill" rounded severity="secondary" />
             </div>
@@ -41,11 +41,12 @@ export default {
   data(){
     return{
       artists:{},
-      followedArtists: {},
+      followedArtists: [],
       follower:{
         artistId:null,
         hobbyistId:null,
       },
+      hobbyistService: undefined,
       responsiveOptions: [
         {
           breakpoint: '1400px',
@@ -74,6 +75,7 @@ export default {
   created() {
     this.followedService = new FollowersApiService();
     this.artistService = new ArtistsApiService();
+    this.hobbyistService = new HobbyistsApiService();
     this.getTopArtist()
     this.getFollowedArtistsByUser();
   },
@@ -86,14 +88,14 @@ export default {
       })
     },
     getFollowedArtistsByUser() {
-      this.followedService.getArtistsFollowed(useAuthStore().user.typeId).then((response) => {
-        this.followedArtists = response.data;
-        console.log(response.data);
-      })
+      this.hobbyistService.getById(useAuthStore().user.typeId).then((response) => {    //getById configurar para inicio de sesion copio el id del que inicio sesión
+        this.followedArtists = response.data.followedArtists;
+        console.log(this.followedArtists);
+      });
     },
     isArtistFollowed(artistId) {
       for (let follower in this.followedArtists) {
-        if (follower.artistId == artistId)
+        if (follower.artistId === artistId)
           return true;
       }
       return false;
