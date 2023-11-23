@@ -37,8 +37,8 @@ export default {
       navigationHome: [
         {label: "Home", icon: 'pi pi-fw pi-home', routeName: 'welcome', class: 'text-red-500'},
         {label: "About", icon: 'pi pi-info-circle', routeName: 'about', class: 'text-red-500'},
-        {label: "SignIn", icon: 'pi pi-user', routeName: 'sign-in', class: 'hover:bg-red-500 bg-primary'},
-        {label: "Signup", icon: 'pi pi-user-plus', routeName: 'sign-up', class: 'text-red-500'},
+        {label: "Sign in", icon: 'pi pi-user', routeName: 'sign-in', class: 'hover:bg-red-500 bg-primary'},
+        {label: "Sign up", icon: 'pi pi-user-plus', routeName: 'sign-up', class: 'text-red-500'},
       ]
     }
   },

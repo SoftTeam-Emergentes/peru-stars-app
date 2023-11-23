@@ -16,11 +16,11 @@
 
       <form @submit="login">
         <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-        <pv-input-text v-model="credentials.email" id="email1" type="email" placeholder="Correo electrónico"
+        <pv-input-text v-model="credentials.email" id="email1" type="email" placeholder="Email"
                        class="w-full mb-3"/>
 
         <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-        <pv-input-text v-model="credentials.password" id="password1" type="password" placeholder="Contraseña"
+        <pv-input-text v-model="credentials.password" id="password1" type="password" placeholder="Password"
                        class="w-full mb-3"/>
 
         <div class="flex align-items-center justify-content-between mb-6">
@@ -40,7 +40,7 @@
 import {useAuthStore} from "@/accounts/stores/auth";
 
 export default {
-  name: "SignIn",
+  name: "Sign-in",
 
 
   data() {

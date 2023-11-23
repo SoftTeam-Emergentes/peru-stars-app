@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <h1>Home artist</h1>
+  <h1>Artist home</h1>
 </template>
 
 <style scoped>

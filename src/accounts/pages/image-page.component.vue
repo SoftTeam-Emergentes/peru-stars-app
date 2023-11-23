@@ -1,7 +1,7 @@
 <template>
   <div>
     <input type="file" @change="handleFileChange" accept="image/*">
-    <button @click="convertAndSave">Convertir y Guardar como Base85</button>
+    <button @click="convertAndSave">Concert and Save as Base85</button>
   </div>
 </template>
 <script>
