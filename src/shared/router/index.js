@@ -5,13 +5,10 @@ import Welcome from "@/accounts/pages/welcome.component.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: "/image",
-      name: 'image',
-      component: () => import('@/accounts/pages/image-page.component.vue')
-    },
+
     {
       path: '/',
+      redirect: '/about',
       name: 'welcome',
       component: Welcome
     },
