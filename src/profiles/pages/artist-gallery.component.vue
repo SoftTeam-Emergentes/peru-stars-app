@@ -7,18 +7,18 @@
       <pv-button icon="pi pi-plus" @click="showAddArtEventDialog = true" label="Add Art event" severity="secondary"
                  class="ml-2 m-4"/>
     </div>
-    <pv-dialog v-model:visible="showAddArtworkDialog" header="Agregar obra de arte">
-      <p>Aquí puedes agregar tu código para manejar la adición de una obra de arte.</p>
+    <pv-dialog v-model:visible="showAddArtworkDialog" header="Add artwork">
+      <p>Here you can add your code to manage the adding of an artwork.</p>
       <card-add-artwork :addArtwork="addArtwork"/>
       <template #footer>
-        <pv-button label="Cancelar" @click="showAddArtworkDialog = false" class="p-button-text"/>
+        <pv-button label="Cancel" @click="showAddArtworkDialog = false" class="p-button-text"/>
       </template>
     </pv-dialog>
-    <pv-dialog v-model:visible="showAddArtEventDialog" header="Agregar evento de arte">
-      <p>Aquí puedes agregar tu código para manejar la adición de un evento de arte.</p>
+    <pv-dialog v-model:visible="showAddArtEventDialog" header="Add art event">
+      <p>Here you can add your code to manage the adding of a new art event.</p>
       <card-add-artevent :addArtEvent="addArtEvent"/>
       <template #footer>
-        <pv-button label="Cancelar" @click="showAddArtworkDialog = false" class="p-button-text"/>
+        <pv-button label="Cancel" @click="showAddArtworkDialog = false" class="p-button-text"/>
       </template>
     </pv-dialog>
     <pv-galleria v-model:activeIndex="activeIndex" v-model:visible="displayCustom" :value="images"

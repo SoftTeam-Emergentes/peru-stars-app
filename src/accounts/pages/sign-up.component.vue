@@ -7,7 +7,7 @@
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6 z-1 opacity-80 ">
       <div class="text-center mb-5">
 
-        <div class="text-900 text-3xl font-medium mb-3">Register</div>
+        <div class="text-900 text-3xl font-medium mb-3">Sign up</div>
         <span class="text-600 font-medium line-height-3">You have an account?</span>
         <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" @click="navigateToSingIn">Sign In</a>
       </div>
@@ -16,16 +16,16 @@
         <label class="block text-900 font-medium mb-2">Name</label>
         <pv-input-text v-model="userInfo.firstName" type="text" class="w-full mb-3" placeholder="Your name"/>
         <label class="block text-900 font-medium mb-2">Last Name</label>
-        <pv-input-text v-model="userInfo.lastName" type="text" class="w-full mb-3" placeholder="your lastname"/>
+        <pv-input-text v-model="userInfo.lastName" type="text" class="w-full mb-3" placeholder="Your lastname"/>
 
 
         <label class="block text-900 font-medium mb-2">Email</label>
-        <pv-input-text v-model="userInfo.email" type="email" class="w-full mb-3" placeholder="your email address"/>
+        <pv-input-text v-model="userInfo.email" type="email" class="w-full mb-3" placeholder="Your email address"/>
 
         <div class="flex flex-wrap  justify-content-between mb-3">
           <div>
             <label class="block text-900 font-medium mb-2">Password</label>
-            <pv-password v-model="userInfo.password" type="password" placeholder="your password" toggleMask>
+            <pv-password v-model="userInfo.password" type="password" placeholder="Your password" toggleMask>
               <template #header>
                 <h6>Pick a password</h6>
               </template>
@@ -33,17 +33,17 @@
                 <pv-divider/>
                 <p class="mt-2">Suggestions</p>
                 <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                  <li>At least one lowercase</li>
-                  <li>At least one uppercase</li>
-                  <li>At least one numeric</li>
-                  <li>Minimum 8 characters</li>
+                  <li>At least one lower case character</li>
+                  <li>At least one upper case character</li>
+                  <li>At least one numeric character</li>
+                  <li>Minimum of 8 characters</li>
                 </ul>
               </template>
             </pv-password>
           </div>
           <div>
             <label class="block text-900 font-medium mb-2">Repeat Password</label>
-            <pv-password v-model="confirmationPassword" type="password" placeholder="repeat your password" toggleMask>
+            <pv-password v-model="confirmationPassword" type="password" placeholder="Repeat your password" toggleMask>
               <template #header>
                 <h6>Pick a password</h6>
               </template>
@@ -51,17 +51,17 @@
                 <pv-divider/>
                 <p class="mt-2">Suggestions</p>
                 <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                  <li>At least one lowercase</li>
-                  <li>At least one uppercase</li>
-                  <li>At least one numeric</li>
-                  <li>Minimum 8 characters</li>
+                  <li>At least one lower case character</li>
+                  <li>At least one upper case character</li>
+                  <li>At least one numeric character</li>
+                  <li>Minimum of 8 characters</li>
                 </ul>
               </template>
             </pv-password>
           </div>
         </div>
         <div class="mb-3">
-          <label class="block text-900 font-medium ">Type user</label>
+          <label class="block text-900 font-medium ">Type of user</label>
           <pv-dropdown v-model="selectedUser" :options="typeUser" class="w-full md:w-14rem"
                        placeholder="Select user"/>
         </div>
@@ -69,37 +69,43 @@
         <div>
           <div v-if="selectedUser==='artist'" class="card flex flex-wrap justify-content-center gap-2 ">
             <div class="col" style="min-width: 100%">
-              <label class="block text-900 font-medium ">BrandName</label>
-              <pv-input-text class="w-full" v-model="artist.brandName" placeholder="your brandName"/>
+              <label class="block text-900 font-medium ">Brand name</label>
+              <pv-input-text class="w-full" v-model="artist.brandName" placeholder="Your brand name"/>
             </div>
             <div class="col grid align-items-center ">
               <div class="col-4">
-                <label class="block text-900 font-medium ">Genre artist</label>
+                <label class="block text-900 font-medium ">Genre</label>
                 <pv-dropdown v-model="artist.genre" :options="typeGenre" class="w-full md:w-14rem"
                              placeholder="Select genre"/>
               </div>
               <div class="col-4">
-                <label class="block text-900 font-medium ">Telephone</label>
-                <pv-input-text class="w-full" v-model="artist.contactNumber" type="number" placeholder="your number"/>
+                <label class="block text-900 font-medium ">Phone number</label>
+                <pv-input-text class="w-full" v-model="artist.contactNumber" type="number" placeholder="Your number"/>
               </div>
               <div class=" col-4">
                 <label class="block text-900 font-medium ">Age</label>
-                <pv-input-text class="w-full" v-model="artist.age" type="number" placeholder="your age"/>
+                <pv-input-text class="w-full" v-model="artist.age" type="number" :min="18" :max="100" placeholder="Your age"/>
               </div>
             </div>
             <div class=" col" style="min-width: 100%">
               <label class="block text-900 font-medium ">Contact Email</label>
-              <pv-input-text class="w-full" v-model="artist.contactEmail" placeholder="your contact email"/>
+              <pv-input-text class="w-full" v-model="artist.contactEmail" placeholder="Your contact email"/>
             </div>
           </div>
           <div v-else-if="selectedUser==='hobbyist'" class="card flex flex-wrap justify-content-center gap-2 ">
 
             <div class=" col-4">
               <label class="block text-900 font-medium ">Age</label>
-              <pv-input-text class="w-full" v-model="hobbyist.age" type="number" placeholder="your age"/>
+              <pv-input-text class="w-full" v-model="hobbyist.age" ini type="number" :min="18" :max="100" placeholder="Your age"/>
             </div>
 
 
+          </div>
+          <div>
+            <label>By creating an account, you agree to the</label>
+            <pv-button  label="Terms and Conditions" style="height: 2px;" link @click="navigateToTOS" />
+            <label>and</label>
+            <pv-button  label="Privacy Policy" style="height: 2px;" link @click="navigateToPrivacyPolicy" />
           </div>
         </div>
         <div v-if="error" class="align-items-center font-light text-red-500">
@@ -138,9 +144,9 @@ export default {
         'hobbyist'],
       typeGenre: [
         'MUSICIAN',
-        'FILMAKER',
-        'VISUALARTIST',
-        'WRITER',
+        'FILMMAKER',
+        'VISUAL ARTIST',
+        'WRITTER',
         'OTHER'],
       userInfo: {
         firstName: '',
@@ -149,9 +155,9 @@ export default {
         password: '',
       },
       artist: {
-        description: 'pon tu descripcion',
+        description: 'Your description',
         brandName: '',
-        phrase: 'poner tu frase',
+        phrase: 'Your phrase',
         contactNumber: 0,
         contactEmail: '',
         age: 0,
@@ -168,6 +174,14 @@ export default {
   methods: {
     navigateToSingIn() {
       this.$router.push({name: 'sign-in'});
+    },
+    navigateToTOS() {
+      const route = this.$router.resolve({name: 'terms-and-conditions'});
+      window.open(route.href, '_blank');
+    },
+    navigateToPrivacyPolicy() {
+      const route = this.$router.resolve({name: 'privacy-policy'});
+      window.open(route.href, '_blank');
     },
     async register() {
       //const registeredUserStore = useRegisteredUserStore();
@@ -210,7 +224,7 @@ export default {
           // registeredUserStore.type = this.selectedUser;
         } else {
           this.error = true;
-          console.log('Passwords do not match');
+          console.log('Password does not match');
         }
 
       } catch (error) {
@@ -220,10 +234,10 @@ export default {
 
     errorMessages() {
       if (this.userInfo.password !== this.confirmationPassword) {
-        this.errorPassword = '* Password do not match';
+        this.errorPassword = '* Password does not match';
       } else this.errorPassword = '';
       if (this.selectedUser == null) {
-        this.errorTypeUser = '* No select type user';
+        this.errorTypeUser = '* Type not selected';
       } else this.errorTypeUser = '';
       return this.errorTypeUser + '\n' + this.errorPassword
     }

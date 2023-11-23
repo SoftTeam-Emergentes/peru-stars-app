@@ -6,7 +6,7 @@
     <div class="grid  surface-section text-800 shadow-8" style="max-width: 850px;width: auto; margin: auto;">
       <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center  ">
         <section>
-          <span class="block text-4xl font-bold mb-1">Welcome <span style="color: red;">{{getName()}}</span> Enjoy the arts on display</span>
+          <span class="block text-4xl font-bold mb-1">Welcome <span style="color: red;">{{getName()}}</span> Enjoy the art on display</span>
           <div class="text-4xl text-primary font-bold mb-3">visitors deserve to see</div>
           <p class="mt-0 mb-4 text-700 line-height-3">
             <i class="pi pi-envelope" style="font-size: 1.5rem; color: darkslategray;"> : {{ getEmail() }}</i><br>
