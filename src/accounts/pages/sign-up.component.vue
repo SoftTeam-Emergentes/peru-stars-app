@@ -101,6 +101,12 @@
 
 
           </div>
+          <div>
+            <label>By creating an account, you agree to the</label>
+            <pv-button  label="Terms and Conditions" style="height: 2px;" link @click="navigateToTOS" />
+            <label>and</label>
+            <pv-button  label="Privacy Policy" style="height: 2px;" link @click="navigateToPrivacyPolicy" />
+          </div>
         </div>
         <div v-if="error" class="align-items-center font-light text-red-500">
           <pv-divider/>
@@ -168,6 +174,14 @@ export default {
   methods: {
     navigateToSingIn() {
       this.$router.push({name: 'sign-in'});
+    },
+    navigateToTOS() {
+      const route = this.$router.resolve({name: 'terms-and-conditions'});
+      window.open(route.href, '_blank');
+    },
+    navigateToPrivacyPolicy() {
+      const route = this.$router.resolve({name: 'privacy-policy'});
+      window.open(route.href, '_blank');
     },
     async register() {
       //const registeredUserStore = useRegisteredUserStore();

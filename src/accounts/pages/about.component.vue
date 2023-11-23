@@ -99,7 +99,10 @@
       <!--<a href= "https://facebook.com" target="_blank"><i class="fab fa-facebook-f facebook"></i></a>
           <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram instagram"></i></a>
           <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter twitter"></i></a>-->
-      <pv-button class="bg-red-500 m-5" to="/terms&conditions">Terms and Conditions</pv-button>
+      <p></p>
+      <pv-button label="Terms and Conditions" style="height: 2px;" link @click="navigateToTOS" />
+      <p></p>
+      <pv-button label="Privacy Policy" style="height: 2px;" link @click="navigateToPrivacyPolicy" />
       <!--        <terms-and-conditions dialogValue="dialogValue"></terms-and-conditions>-->
     </div>
   </footer>
@@ -125,7 +128,15 @@ export default {
     navigateToSignUp()
     {
       this.$router.push({name: 'sign-up'});
-    }
+    },
+    navigateToTOS() {
+      const route = this.$router.resolve({name: 'terms-and-conditions'});
+      window.open(route.href, '_blank');
+    },
+    navigateToPrivacyPolicy() {
+      const route = this.$router.resolve({name: 'privacy-policy'});
+      window.open(route.href, '_blank');
+    },
   }
 }
 </script>

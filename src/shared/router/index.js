@@ -31,6 +31,16 @@ const router = createRouter({
       component: () => import('@/accounts/pages/sign-up.component.vue')
     },
     {
+      path: '/terms-and-conditions',
+      name: 'terms-and-conditions',
+      component: () => import('@/agreements/terms-and-conditions.component.vue')
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: () => import('@/agreements/privacy-policy.component.vue')
+    },
+    {
       path: '/hobbyist',
       name: 'hobbyist',
       component: () => import('@/profiles/pages/hobbyist.component.vue'),
