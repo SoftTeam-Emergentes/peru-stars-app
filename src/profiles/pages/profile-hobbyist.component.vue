@@ -40,7 +40,7 @@
     <pv-button @click="openEditDialog" label="Edit" icon="pi pi-external-link" class="w-full"></pv-button>
 
     <pv-dialog v-model:visible="visible" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
-      <card-edit-hobbyist :initialUser="user" :initialHobbyist="hobbyist" :initialUserId="userId" @updateHobbyist="updateHobbyist"></card-edit-hobbyist>
+      <card-edit-hobbyist :initialUser="user" :initialHobbyist="storableHobbyist" :initialUserId="userId" @updateHobbyist="updateHobbyist"></card-edit-hobbyist>
     </pv-dialog>
   </div>
 
@@ -62,18 +62,18 @@ export default {
   hobbyistService:null,
   data() {
     return {
-      dataH:{},
       userId:null,
       user:{
         firstName:null,
         lastName:null,
         email:null,
       },
-      hobbyist:{
+      storableHobbyist:{
         age:null,
         collected:null,
       },
-      visible: false
+      visible: false,
+      hobbyistService: undefined
     };
   },
   created() {
@@ -86,7 +86,7 @@ export default {
     },
     updateHobbyist(updatedHobbyist) {
       // Este método se llamará cuando el componente card-edit-hobbyist emita el evento @updateHobbyist
-      this.hobbyist = updatedHobbyist;
+      this.storableHobbyist = updatedHobbyist;
       this.visible = false; // Cerrar el diálogo después de la actualización
     },
     getImage(){
@@ -109,15 +109,14 @@ export default {
       this.user.lastName= useAuthStore().user.lastName;
       this.user.email= useAuthStore().user.email;
       this.hobbyistService.getById(useAuthStore().user.typeId).then((response) => {    //getById configurar para inicio de sesion copio el id del que inicio sesión
-        this.hobbyist.age = response.data.age;
+        this.storableHobbyist.age = response.data.age;
 
         //console.log(this.hobbyist.age);
       });
 
     },
     getAge() {
-
-      return this.hobbyist.age;
+      return this.storableHobbyist.age;
     }
   },
 
